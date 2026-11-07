@@ -64,7 +64,7 @@ document.querySelectorAll(".pill-btn").forEach(btn => {
 const canvas = document.getElementById("spectrumCanvas");
 const needle = document.getElementById("analogNeedle");
 let isAudioPlaying = false;
-let isWet = false;
+let isWet = true;
 
 function initCanvasAnimation() {
   if (!canvas) return;
@@ -132,21 +132,28 @@ function initCanvasAnimation() {
   draw();
 }
 
-// --- 4. REAL AUDIO PLAYER DEMO (ONE SINGLE STREAM — ZERO ECHO, ZERO DOUBLE SOUND) ---
-let isAudioPlaying = false;
-let isWet = true; // Default to the PLF Channel master sound!
-
+// --- 4. REAL AUDIO PLAYER DEMO (SEAMLESS A/B SWITCHING, ZERO DOUBLING) ---
 function setupWebAudioDemo() {
-  const demoAudio = document.getElementById("playerAudio") || new Audio('chance_wet.mp3');
+  const audioDry = document.getElementById("audioDry");
+  const audioWet = document.getElementById("audioWet");
   const playBtn = document.getElementById("playBtn");
   const playText = document.getElementById("playText");
+  const playIcon = document.getElementById("playIcon");
   const dryBtn = document.getElementById("dryBtn");
   const wetBtn = document.getElementById("wetBtn");
   const dspStatus = document.getElementById("dspStatus");
   const waveBarsContainer = document.getElementById("waveBars");
 
-  demoAudio.loop = true;
-  demoAudio.preload = 'auto';
+  if (!audioDry || !audioWet || !playBtn) {
+    console.warn("Audio elements or play button not found in DOM");
+    return;
+  }
+
+  // Preload settings
+  audioDry.preload = 'auto';
+  audioWet.preload = 'auto';
+  audioDry.loop = true;
+  audioWet.loop = true;
 
   // Sound Wave Bars in UI
   if (waveBarsContainer) {
@@ -162,7 +169,7 @@ function setupWebAudioDemo() {
     if (!waveBarsContainer) return;
     const bars = waveBarsContainer.children;
     for (let i = 0; i < bars.length; i++) {
-      if (!demoAudio.paused) {
+      if (isAudioPlaying) {
         const h = isWet ? Math.floor(Math.random() * 38 + 10) : Math.floor(Math.random() * 24 + 6);
         bars[i].style.height = `${h}px`;
         bars[i].style.background = isWet ? "#38bdf8" : "#3b82f6";
@@ -174,62 +181,87 @@ function setupWebAudioDemo() {
   }
   setInterval(updateWaveBars, 80);
 
-  // Sync isAudioPlaying with native audio element events
-  demoAudio.addEventListener('play', () => {
-    isAudioPlaying = true;
-    playBtn.style.background = "#22c55e";
-    playText.textContent = "Pausa Traccia";
-  });
+  function setPlayingUI(playing) {
+    isAudioPlaying = playing;
+    if (playing) {
+      playBtn.style.background = "#22c55e";
+      if (playText) playText.textContent = "Pausa Traccia";
+      if (playIcon) playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+    } else {
+      playBtn.style.background = "";
+      if (playText) playText.textContent = 'Riproduci Traccia ("Chance")';
+      if (playIcon) playIcon.innerHTML = '<path d="M5 3l14 9-14 9V3z"/>';
+    }
+  }
 
-  demoAudio.addEventListener('pause', () => {
-    isAudioPlaying = false;
-    playBtn.style.background = "";
-    playText.textContent = "Riproduci Traccia (\"Chance\")";
+  // Event listeners for state sync
+  audioDry.addEventListener('play', () => setPlayingUI(true));
+  audioWet.addEventListener('play', () => setPlayingUI(true));
+  audioDry.addEventListener('pause', () => {
+    if (audioWet.paused) setPlayingUI(false);
+  });
+  audioWet.addEventListener('pause', () => {
+    if (audioDry.paused) setPlayingUI(false);
   });
 
   playBtn.addEventListener("click", () => {
-    if (demoAudio.paused) {
-      demoAudio.play().catch(e => console.log("Audio play error:", e));
+    const isCurrentlyPlaying = !audioDry.paused || !audioWet.paused;
+    if (isCurrentlyPlaying) {
+      audioDry.pause();
+      audioWet.pause();
     } else {
-      demoAudio.pause();
+      const targetAudio = isWet ? audioWet : audioDry;
+      const otherAudio = isWet ? audioDry : audioWet;
+      otherAudio.pause();
+      targetAudio.play().catch(e => {
+        console.warn("Audio play prevented:", e);
+      });
     }
   });
 
-  dryBtn.addEventListener("click", () => {
-    if (!isWet) return;
-    isWet = false;
-    dryBtn.classList.add("active");
-    wetBtn.classList.remove("active");
-    dspStatus.textContent = "Attivo: BYPASS (Segnale Diretto Originale)";
-    dspStatus.style.color = "var(--primary)";
+  if (dryBtn) {
+    dryBtn.addEventListener("click", () => {
+      if (!isWet) return;
+      isWet = false;
+      dryBtn.classList.add("active");
+      if (wetBtn) wetBtn.classList.remove("active");
+      if (dspStatus) {
+        dspStatus.textContent = "Attivo: BYPASS (Segnale Diretto Originale)";
+        dspStatus.style.color = "var(--primary)";
+      }
 
-    const wasPlaying = !demoAudio.paused;
-    const pos = demoAudio.currentTime;
-    demoAudio.pause();
-    demoAudio.src = 'chance_dry.mp3';
-    demoAudio.currentTime = pos;
-    if (wasPlaying) {
-      demoAudio.play().catch(e => console.log(e));
-    }
-  });
+      if (!audioWet.paused) {
+        const pos = audioWet.currentTime;
+        audioWet.pause();
+        audioDry.currentTime = pos;
+        audioDry.play().catch(e => console.warn(e));
+      } else {
+        audioDry.currentTime = audioWet.currentTime;
+      }
+    });
+  }
 
-  wetBtn.addEventListener("click", () => {
-    if (isWet) return;
-    isWet = true;
-    wetBtn.classList.add("active");
-    dryBtn.classList.remove("active");
-    dspStatus.textContent = "Attivo: PLF CHANNEL (Console Glue + Dynamic EQ + Exciter)";
-    dspStatus.style.color = "var(--gold)";
+  if (wetBtn) {
+    wetBtn.addEventListener("click", () => {
+      if (isWet) return;
+      isWet = true;
+      wetBtn.classList.add("active");
+      if (dryBtn) dryBtn.classList.remove("active");
+      if (dspStatus) {
+        dspStatus.textContent = "Attivo: PLF CHANNEL (Console Glue + Dynamic EQ + Exciter)";
+        dspStatus.style.color = "var(--gold)";
+      }
 
-    const wasPlaying = !demoAudio.paused;
-    const pos = demoAudio.currentTime;
-    demoAudio.pause();
-    demoAudio.src = 'chance_wet.mp3';
-    demoAudio.currentTime = pos;
-    if (wasPlaying) {
-      demoAudio.play().catch(e => console.log(e));
-    }
-  });
+      if (!audioDry.paused) {
+        const pos = audioDry.currentTime;
+        audioDry.pause();
+        audioWet.currentTime = pos;
+        audioWet.play().catch(e => console.warn(e));
+      } else {
+        audioWet.currentTime = audioDry.currentTime;
+      }
+    });
+  }
 }
 
 // --- 5. INTERACTIVE KNOB ROTATION ON CLICK ---
