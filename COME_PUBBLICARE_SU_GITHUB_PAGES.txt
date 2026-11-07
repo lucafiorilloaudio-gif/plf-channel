@@ -1,0 +1,29 @@
+=====================================================================
+    GUIDA PER PUBBLICARE IL SITO GRATIS SU GITHUB PAGES (IN 60 SECONDI)
+=====================================================================
+
+Questa cartella contiene il tuo sito web vetrina ufficiale completo:
+- index.html (Pagina principale con showcase, audio player A/B, ecc.)
+- style.css (Grafica moderna dark analogica responsive)
+- app.js (Animazione spettro, vu meter ad ago, player A/B interattivo)
+- PLF_Channel_vst3_PLF_Antigravity.zip (Download diretto VST3 per gli utenti)
+- Manuale_Utente_PLF_Channel.pdf (Manuale PDF scaricabile direttamente)
+
+COME PUBBLICARLO GRATIS SU GITHUB (Senza spendere nulla):
+1. Vai su https://github.com/new
+2. Chiama il repository:
+   "PLF-Antigravity-Store" (oppure "lucafiorilloaudio-gif.github.io")
+3. Impostalo su "Public" e clicca "Create repository".
+4. Nella pagina del nuovo repository, clicca sul link "uploading an existing file".
+5. Trascina TUTTI i file di questa cartella dentro GitHub e clicca su "Commit changes".
+6. Vai su "Settings" del repository (in alto) -> Clicca sulla scheda "Pages" (a sinistra).
+7. Sotto "Branch", seleziona "main" (cartella /root) e clicca su "Save".
+
+FATTO! Entro 1-2 minuti, il tuo sito sara' online e visibile a tutto il mondo a questo indirizzo:
+https://lucafiorilloaudio-gif.github.io/PLF-Antigravity-Store/
+
+Da quel momento, chiunque nel mondo potra':
+- Ascoltare la demo interattiva del tuo plugin.
+- Vedere tutte le caratteristiche di PLF Channel.
+- Cliccare su "Download Gratuito" per scaricare lo zip e il manuale!
+- E quando creerai nuovi plugin, bastera' aggiungerli alla griglia del sito!
