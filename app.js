@@ -60,11 +60,13 @@ document.querySelectorAll(".pill-btn").forEach(btn => {
   });
 });
 
-// --- 3. SPECTRUM ANALYZER ANIMATION ---
+// --- 3. SPECTRUM ANALYZER ANIMATION & REAL AUDIO METERING ---
 const canvas = document.getElementById("spectrumCanvas");
 const needle = document.getElementById("analogNeedle");
 let isAudioPlaying = false;
 let isWet = true;
+let realAnalyser = null;
+let freqDataArray = null;
 
 function initCanvasAnimation() {
   if (!canvas) return;
@@ -88,22 +90,37 @@ function initCanvasAnimation() {
       ctx.stroke();
     }
 
+    let realFrequencies = null;
+    let avgEnergy = 0;
+    if (realAnalyser && isAudioPlaying) {
+      if (!freqDataArray) freqDataArray = new Uint8Array(realAnalyser.frequencyBinCount);
+      realAnalyser.getByteFrequencyData(freqDataArray);
+      realFrequencies = freqDataArray;
+      let sum = 0;
+      for (let j = 0; j < realFrequencies.length; j++) sum += realFrequencies[j];
+      avgEnergy = sum / realFrequencies.length;
+    }
+
     // Update & Draw Bars
     const barW = (width / numBars) - 2;
     for (let i = 0; i < numBars; i++) {
       let targetH = 8;
       if (isAudioPlaying) {
-        // Curve simulating musical spectrum: prominent bass, gentle slope
-        const freqWeight = Math.sin((i / numBars) * Math.PI) * (isWet ? 55 : 40);
-        const noise = (Math.random() * 22);
-        targetH = Math.max(6, freqWeight + noise);
+        if (realFrequencies) {
+          const binIdx = Math.floor((i / numBars) * (realFrequencies.length * 0.7));
+          const val = realFrequencies[binIdx] / 255;
+          targetH = Math.max(6, val * (height - 10) * (isWet ? 1.15 : 0.95));
+        } else {
+          const freqWeight = Math.sin((i / numBars) * Math.PI) * (isWet ? 55 : 40);
+          const noise = (Math.random() * 22);
+          targetH = Math.max(6, freqWeight + noise);
+        }
       }
-      bars[i] = bars[i] * 0.75 + targetH * 0.25;
+      bars[i] = bars[i] * 0.7 + targetH * 0.3;
 
       const x = i * (barW + 2);
       const y = height - bars[i];
 
-      // Cyan to Gold gradient
       const grad = ctx.createLinearGradient(0, height, 0, y);
       if (isWet) {
         grad.addColorStop(0, "rgba(56, 189, 248, 0.7)");
@@ -121,8 +138,13 @@ function initCanvasAnimation() {
     if (needle) {
       let needleDeg = -18;
       if (isAudioPlaying) {
-        const peak = isWet ? (Math.random() * 22 - 4) : (Math.random() * 18 - 8);
-        needleDeg = peak;
+        if (avgEnergy > 0) {
+          const norm = avgEnergy / 128;
+          needleDeg = -18 + (norm * 36) + (Math.random() * 4 - 2);
+        } else {
+          const peak = isWet ? (Math.random() * 22 - 4) : (Math.random() * 18 - 8);
+          needleDeg = peak;
+        }
       }
       needle.style.transform = `rotate(${needleDeg}deg)`;
     }
@@ -132,10 +154,67 @@ function initCanvasAnimation() {
   draw();
 }
 
-// --- 4. REAL AUDIO PLAYER DEMO (SEAMLESS A/B SWITCHING, ZERO DOUBLING) ---
+// --- 4. SEAMLESS WEB AUDIO ENGINE (ZERO LATENCY A/B CROSSFADE FOR MOBILE & DESKTOP) ---
+let audioCtx = null;
+let dryBuffer = null;
+let wetBuffer = null;
+let sourceDry = null;
+let sourceWet = null;
+let gainDry = null;
+let gainWet = null;
+let masterGain = null;
+let playStartTime = 0;
+let pauseOffset = 0;
+let isBufferLoading = false;
+
+async function initAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContextClass();
+  }
+  if (audioCtx.state === 'suspended') {
+    await audioCtx.resume();
+  }
+}
+
+async function loadBuffers() {
+  if (dryBuffer && wetBuffer) return true;
+  if (isBufferLoading) return false;
+  isBufferLoading = true;
+
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!audioCtx) audioCtx = new AudioContextClass();
+
+    const [dryRes, wetRes] = await Promise.all([
+      fetch('chance_dry.mp3'),
+      fetch('chance_wet.mp3')
+    ]);
+
+    const [dryData, wetData] = await Promise.all([
+      dryRes.arrayBuffer(),
+      wetRes.arrayBuffer()
+    ]);
+
+    const decode = (buf) => new Promise((resolve, reject) => {
+      audioCtx.decodeAudioData(buf, resolve, reject);
+    });
+
+    [dryBuffer, wetBuffer] = await Promise.all([
+      decode(dryData),
+      decode(wetData)
+    ]);
+
+    isBufferLoading = false;
+    return true;
+  } catch (err) {
+    console.warn("Could not preload Web Audio buffers:", err);
+    isBufferLoading = false;
+    return false;
+  }
+}
+
 function setupWebAudioDemo() {
-  const audioDry = document.getElementById("audioDry");
-  const audioWet = document.getElementById("audioWet");
   const playBtn = document.getElementById("playBtn");
   const playText = document.getElementById("playText");
   const playIcon = document.getElementById("playIcon");
@@ -144,18 +223,11 @@ function setupWebAudioDemo() {
   const dspStatus = document.getElementById("dspStatus");
   const waveBarsContainer = document.getElementById("waveBars");
 
-  if (!audioDry || !audioWet || !playBtn) {
-    console.warn("Audio elements or play button not found in DOM");
-    return;
-  }
+  // Fallback HTML5 audio elements if Web Audio is unsupported
+  const audioDryFallback = document.getElementById("audioDry");
+  const audioWetFallback = document.getElementById("audioWet");
 
-  // Preload settings
-  audioDry.preload = 'auto';
-  audioWet.preload = 'auto';
-  audioDry.loop = true;
-  audioWet.loop = true;
-
-  // Sound Wave Bars in UI
+  // Build waveform visualizer bars
   if (waveBarsContainer) {
     waveBarsContainer.innerHTML = "";
     for (let i = 0; i < 36; i++) {
@@ -184,41 +256,133 @@ function setupWebAudioDemo() {
   function setPlayingUI(playing) {
     isAudioPlaying = playing;
     if (playing) {
-      playBtn.style.background = "#22c55e";
+      if (playBtn) playBtn.style.background = "#22c55e";
       if (playText) playText.textContent = "Pausa Traccia";
       if (playIcon) playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     } else {
-      playBtn.style.background = "";
+      if (playBtn) playBtn.style.background = "";
       if (playText) playText.textContent = 'Riproduci Traccia ("Chance")';
       if (playIcon) playIcon.innerHTML = '<path d="M5 3l14 9-14 9V3z"/>';
     }
   }
 
-  // Event listeners for state sync
-  audioDry.addEventListener('play', () => setPlayingUI(true));
-  audioWet.addEventListener('play', () => setPlayingUI(true));
-  audioDry.addEventListener('pause', () => {
-    if (audioWet.paused) setPlayingUI(false);
-  });
-  audioWet.addEventListener('pause', () => {
-    if (audioDry.paused) setPlayingUI(false);
-  });
-
-  playBtn.addEventListener("click", () => {
-    const isCurrentlyPlaying = !audioDry.paused || !audioWet.paused;
-    if (isCurrentlyPlaying) {
-      audioDry.pause();
-      audioWet.pause();
-    } else {
-      const targetAudio = isWet ? audioWet : audioDry;
-      const otherAudio = isWet ? audioDry : audioWet;
-      otherAudio.pause();
-      targetAudio.play().catch(e => {
-        console.warn("Audio play prevented:", e);
-      });
+  function setupRouting() {
+    if (!audioCtx) return;
+    if (!gainDry) gainDry = audioCtx.createGain();
+    if (!gainWet) gainWet = audioCtx.createGain();
+    if (!masterGain) masterGain = audioCtx.createGain();
+    if (!realAnalyser) {
+      realAnalyser = audioCtx.createAnalyser();
+      realAnalyser.fftSize = 128;
     }
-  });
 
+    gainDry.disconnect();
+    gainWet.disconnect();
+    masterGain.disconnect();
+    realAnalyser.disconnect();
+
+    gainDry.connect(masterGain);
+    gainWet.connect(masterGain);
+    masterGain.connect(realAnalyser);
+    realAnalyser.connect(audioCtx.destination);
+
+    // Initial gains based on active selection
+    gainDry.gain.setValueAtTime(isWet ? 0.0 : 1.0, audioCtx.currentTime);
+    gainWet.gain.setValueAtTime(isWet ? 1.0 : 0.0, audioCtx.currentTime);
+  }
+
+  async function startWebAudio() {
+    await initAudioContext();
+    if (!dryBuffer || !wetBuffer) {
+      if (playText) playText.textContent = "Caricamento audio...";
+      const ok = await loadBuffers();
+      if (!ok) {
+        // Fallback to HTML5 audio if decode failed
+        fallbackPlay();
+        return;
+      }
+    }
+
+    setupRouting();
+
+    // Stop any existing sources
+    stopWebAudioSources();
+
+    sourceDry = audioCtx.createBufferSource();
+    sourceWet = audioCtx.createBufferSource();
+    sourceDry.buffer = dryBuffer;
+    sourceWet.buffer = wetBuffer;
+    sourceDry.loop = true;
+    sourceWet.loop = true;
+
+    sourceDry.connect(gainDry);
+    sourceWet.connect(gainWet);
+
+    const duration = dryBuffer.duration;
+    const offset = pauseOffset % duration;
+    playStartTime = audioCtx.currentTime - offset;
+
+    sourceDry.start(0, offset);
+    sourceWet.start(0, offset);
+
+    setPlayingUI(true);
+  }
+
+  function stopWebAudioSources() {
+    if (sourceDry) {
+      try { sourceDry.stop(); } catch(e) {}
+      try { sourceDry.disconnect(); } catch(e) {}
+      sourceDry = null;
+    }
+    if (sourceWet) {
+      try { sourceWet.stop(); } catch(e) {}
+      try { sourceWet.disconnect(); } catch(e) {}
+      sourceWet = null;
+    }
+  }
+
+  function pauseWebAudio() {
+    if (audioCtx && dryBuffer) {
+      const duration = dryBuffer.duration;
+      pauseOffset = (audioCtx.currentTime - playStartTime) % duration;
+    }
+    stopWebAudioSources();
+    setPlayingUI(false);
+  }
+
+  // Fallback playback for HTML5 audio
+  function fallbackPlay() {
+    if (isAudioPlaying) {
+      if (audioDryFallback) audioDryFallback.pause();
+      if (audioWetFallback) audioWetFallback.pause();
+      setPlayingUI(false);
+    } else {
+      const target = isWet ? audioWetFallback : audioDryFallback;
+      if (target) {
+        target.play().then(() => setPlayingUI(true)).catch(e => console.warn(e));
+      }
+    }
+  }
+
+  // Play / Pause toggle
+  if (playBtn) {
+    playBtn.addEventListener("click", async () => {
+      if (isAudioPlaying) {
+        pauseWebAudio();
+        if (audioDryFallback) audioDryFallback.pause();
+        if (audioWetFallback) audioWetFallback.pause();
+      } else {
+        try {
+          await startWebAudio();
+        } catch (err) {
+          console.warn("Web Audio start failed, falling back:", err);
+          fallbackPlay();
+        }
+      }
+    });
+  }
+
+  // Switch to DRY (Instant Crossfade, 0ms gap!)
   if (dryBtn) {
     dryBtn.addEventListener("click", () => {
       if (!isWet) return;
@@ -230,17 +394,25 @@ function setupWebAudioDemo() {
         dspStatus.style.color = "var(--primary)";
       }
 
-      if (!audioWet.paused) {
-        const pos = audioWet.currentTime;
-        audioWet.pause();
-        audioDry.currentTime = pos;
-        audioDry.play().catch(e => console.warn(e));
-      } else {
-        audioDry.currentTime = audioWet.currentTime;
+      if (audioCtx && gainDry && gainWet) {
+        // Ultra smooth 15ms sample-accurate crossfade
+        const t = audioCtx.currentTime;
+        gainDry.gain.cancelScheduledValues(t);
+        gainWet.gain.cancelScheduledValues(t);
+        gainDry.gain.setValueAtTime(gainDry.gain.value, t);
+        gainDry.gain.linearRampToValueAtTime(1.0, t + 0.015);
+        gainWet.gain.setValueAtTime(gainWet.gain.value, t);
+        gainWet.gain.linearRampToValueAtTime(0.0, t + 0.015);
+      } else if (audioDryFallback && audioWetFallback && !audioWetFallback.paused) {
+        const pos = audioWetFallback.currentTime;
+        audioWetFallback.pause();
+        audioDryFallback.currentTime = pos;
+        audioDryFallback.play().catch(e => console.warn(e));
       }
     });
   }
 
+  // Switch to WET (Instant Crossfade, 0ms gap!)
   if (wetBtn) {
     wetBtn.addEventListener("click", () => {
       if (isWet) return;
@@ -252,16 +424,26 @@ function setupWebAudioDemo() {
         dspStatus.style.color = "var(--gold)";
       }
 
-      if (!audioDry.paused) {
-        const pos = audioDry.currentTime;
-        audioDry.pause();
-        audioWet.currentTime = pos;
-        audioWet.play().catch(e => console.warn(e));
-      } else {
-        audioWet.currentTime = audioDry.currentTime;
+      if (audioCtx && gainDry && gainWet) {
+        // Ultra smooth 15ms sample-accurate crossfade
+        const t = audioCtx.currentTime;
+        gainDry.gain.cancelScheduledValues(t);
+        gainWet.gain.cancelScheduledValues(t);
+        gainDry.gain.setValueAtTime(gainDry.gain.value, t);
+        gainDry.gain.linearRampToValueAtTime(0.0, t + 0.015);
+        gainWet.gain.setValueAtTime(gainWet.gain.value, t);
+        gainWet.gain.linearRampToValueAtTime(1.0, t + 0.015);
+      } else if (audioDryFallback && audioWetFallback && !audioDryFallback.paused) {
+        const pos = audioDryFallback.currentTime;
+        audioDryFallback.pause();
+        audioWetFallback.currentTime = pos;
+        audioWetFallback.play().catch(e => console.warn(e));
       }
     });
   }
+
+  // Start preloading buffers in the background immediately
+  loadBuffers();
 }
 
 // --- 5. INTERACTIVE KNOB ROTATION ON CLICK ---
