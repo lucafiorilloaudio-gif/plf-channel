@@ -1,30 +1,32 @@
 // =========================================================================
-// PLF ANTIGRAVITY — PLF CHANNEL WEB STORE & SHOWCASE JAVASCRIPT
+// PLF ANTIGRAVITY — PLF SPACE DESIGNER & PLF CHANNEL WEB SHOWCASE JAVASCRIPT
 // =========================================================================
 
-// --- 1. PRESET LIBRARY DATA ---
+// --- 1. PRESET LIBRARY DATA (PLF SPACE DESIGNER) ---
 const PRESETS = [
-  { name: "00. Default / Init", cat: "Init", desc: "Stato neutro e trasparente per iniziare da zero." },
-  { name: "01. Kick Drum Punch", cat: "Drums", desc: "Taglio a 300Hz, enfasi a 60Hz e click a 4kHz." },
-  { name: "02. Snare Crack & Body", cat: "Drums", desc: "Rullante grosso con attacco rapido e aria a 8kHz." },
-  { name: "03. Drum Bus Glue", cat: "Drums", desc: "Incolla il drum bus con Comp 4:1, SC-HPF 90Hz e mix 75%." },
-  { name: "04. Cymbals & Overhead Air", cat: "Drums", desc: "HPF a 300Hz e apertura ultrasonica morbida a 16kHz." },
-  { name: "05. Bass Tight & Round", cat: "Bass", desc: "Basso solido e compresso con LMF dinamico per la cassa." },
-  { name: "06. 808 Sub Heavy", cat: "Bass", desc: "Sub a 45Hz esaltato con exciter e monoizzatore sub integrato." },
-  { name: "07. Modern Lead Vocal", cat: "Vocals", desc: "Presenza vocale a 3kHz, aria a 14kHz e de-esser dinamico." },
-  { name: "08. Warm Tube Vocal", cat: "Vocals", desc: "Calore analogico con drive valvolare ed equalizzazione morbida." },
-  { name: "09. Backing Vocals Wide", cat: "Vocals", desc: "Cori e doppie aperte sui lati con Imager all'estremita' stereo." },
-  { name: "10. Acoustic Guitar Silk", cat: "Instruments", desc: "Corpo asciugato sulle basse e aria brillante sulle corde." },
-  { name: "11. Electric Guitar Edge", cat: "Instruments", desc: "Chitarre rock aggressive con medio-alte scavate e drive console." },
-  { name: "12. Piano Concert Hall", cat: "Instruments", desc: "Pianoforte acustico con bilanciamento naturale e dinamica aperta." },
-  { name: "13. Synth Lead In Your Face", cat: "Instruments", desc: "Transient d'attacco potenziato e saturazione nastro spinta." },
-  { name: "14. Master Bus SSL Glue", cat: "Mix Bus", desc: "Il classico setting SSL serie G da master bus (2-3 dB GR)." },
-  { name: "15. Mix Bus Warm Punch", cat: "Mix Bus", desc: "Mix bus con calore sui medio-bassi e attacco preservato." },
-  { name: "16. Transparent Pop Master", cat: "Mix Bus", desc: "Master moderno e compatto con soft-clipper inserito." },
-  { name: "17. EDM / Club Banger", cat: "Mix Bus", desc: "Bassi in mono, apertura stereo sulle alte e limiter a -0.3 dB." },
-  { name: "18. Acoustic Mastering", cat: "Mix Bus", desc: "Intervento minimo e trasparente da mastering acustico/jazz." },
-  { name: "19. Parallel Crush Station", cat: "Creative", desc: "Compressione estrema a 10:1 da dosare in parallelo con mix 35%." },
-  { name: "20. Lo-Fi Radio Vibe", cat: "Creative", desc: "Effetto radio vintage con tagli stretti passa-alto e drive." }
+  { name: "01. Init / Clean State", cat: "Init", desc: "Stato neutro e trasparente: filtri aperti (20kHz), risonanza e drive a 0." },
+  { name: "02. Subterranean Ghost Tape", cat: "Lush", desc: "Saturazione nastro dirty hall, pitch sottile e micro-ritardi stile Burial." },
+  { name: "03. South London Cloud", cat: "Lush", desc: "Riverbero cloud denso e granulare per atmosfere nebbiose notturne." },
+  { name: "04. Distant Rain Echoes", cat: "Lush", desc: "Texture acquatica con riflessioni concert hall e riverbero morbido." },
+  { name: "05. Submerged Cathedral", cat: "Lush", desc: "Ambiente sanctuary immenso e scuro per pad e pianoforti solenni." },
+  { name: "06. Kalimba Cascade", cat: "Organic", desc: "Arpeggio granulare pentatonico con decadimento cristallino e riverbero cloud." },
+  { name: "07. Migration Cloud", cat: "Organic", desc: "Pastiche organico con grani lenti aperti nel campo stereofonico stile Bonobo." },
+  { name: "08. Black Sands Tape Tap", cat: "Organic", desc: "Multi-tap ritmico caldo e naturale con wow and flutter analogico." },
+  { name: "09. Organic Harp Swell", cat: "Organic", desc: "Rigonfiamento swell dinamico per arpe e chitarre acustiche." },
+  { name: "10. Nordic Aurora Bloom", cat: "Neoclassical", desc: "Fioritura celestiale limpida con modulazione d'aria stile Kiasmos." },
+  { name: "11. Reykjavik Micro-Glitch", cat: "Neoclassical", desc: "Glitch ritmico non-lineare con battute sincronizzate e filtro tagliente." },
+  { name: "12. Felt Piano Reverse Swell", cat: "Neoclassical", desc: "Pad reverse per pianoforti felt con atmosfera intima ed emozionante." },
+  { name: "13. Euphoric Pulse", cat: "Neoclassical", desc: "Pulsazione ritmica 16-step con accordi consonantici a cascata." },
+  { name: "14. Solar Wind Shimmer", cat: "Deep Space", desc: "Riverbero shimmer con ottava superiore scintillante ed escursione cosmica." },
+  { name: "15. Interstellar Cavern", cat: "Deep Space", desc: "Spazio profondo infinito con detuning granulare tridimensionale." },
+  { name: "16. Ethereal Dream Cloud", cat: "Deep Space", desc: "Nuvola fluttuante per ambient, chillout e musica meditativa." },
+  { name: "17. Infinite Memory Box", cat: "Deep Space", desc: "Random space con memorie di pitch instabili e nostalgiche." },
+  { name: "18. Black Hole Horizon", cat: "Supermassive", desc: "Spazio supermassiccio con feedback a 0.998 e decadimento infinito." },
+  { name: "19. Valhalla Cloud Eternal", cat: "Supermassive", desc: "Pura spazialità fluttuante eterna con smorzamento HF trasparente." },
+  { name: "20. Andromeda 3D Nebula", cat: "Supermassive", desc: "Nebulosa stellare a matrice olografica multi-tap espansa." },
+  { name: "21. Eternal Starlight Pad", cat: "Supermassive", desc: "Pad infinito con rigonfiamento swell continuo e sustain perenne." },
+  { name: "22. Abyssal Sanctuary", cat: "Supermassive", desc: "Spazio sacro abissale con corpo sui bassi e decadimento monumentale." },
+  { name: "23. Deep Ocean Trench", cat: "Supermassive", desc: "Profondità oceanica con chorus space denso e detuning corale 80s." }
 ];
 
 // --- 2. RENDER PRESETS ---
@@ -35,7 +37,7 @@ function renderPresets(filter = "all") {
 
   const filtered = filter === "all" 
     ? PRESETS 
-    : PRESETS.filter(p => p.cat === filter || (filter === "Mix Bus" && (p.cat === "Mix Bus" || p.cat === "Mastering")));
+    : PRESETS.filter(p => p.cat === filter);
 
   filtered.forEach(p => {
     const card = document.createElement("div");
@@ -73,22 +75,13 @@ function initCanvasAnimation() {
   const ctx = canvas.getContext("2d");
   const width = canvas.width;
   const height = canvas.height;
-  const numBars = 48;
 
-  let bars = new Array(numBars).fill(10);
+  const numBars = 48;
+  const barW = (width / numBars) - 2;
+  const bars = new Array(numBars).fill(8);
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-
-    // Draw Grid Lines
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-    ctx.lineWidth = 1;
-    for (let y = 15; y < height; y += 20) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
-    }
 
     let realFrequencies = null;
     let avgEnergy = 0;
@@ -101,17 +94,15 @@ function initCanvasAnimation() {
       avgEnergy = sum / realFrequencies.length;
     }
 
-    // Update & Draw Bars
-    const barW = (width / numBars) - 2;
     for (let i = 0; i < numBars; i++) {
       let targetH = 8;
       if (isAudioPlaying) {
         if (realFrequencies) {
           const binIdx = Math.floor((i / numBars) * (realFrequencies.length * 0.7));
           const val = realFrequencies[binIdx] / 255;
-          targetH = Math.max(6, val * (height - 10) * (isWet ? 1.15 : 0.95));
+          targetH = Math.max(6, val * (height - 10) * (isWet ? 1.25 : 0.95));
         } else {
-          const freqWeight = Math.sin((i / numBars) * Math.PI) * (isWet ? 55 : 40);
+          const freqWeight = Math.sin((i / numBars) * Math.PI) * (isWet ? 65 : 40);
           const noise = (Math.random() * 22);
           targetH = Math.max(6, freqWeight + noise);
         }
@@ -123,8 +114,8 @@ function initCanvasAnimation() {
 
       const grad = ctx.createLinearGradient(0, height, 0, y);
       if (isWet) {
-        grad.addColorStop(0, "rgba(56, 189, 248, 0.7)");
-        grad.addColorStop(1, "rgba(234, 179, 8, 0.9)");
+        grad.addColorStop(0, "rgba(0, 229, 255, 0.7)");
+        grad.addColorStop(1, "rgba(208, 92, 227, 0.9)");
       } else {
         grad.addColorStop(0, "rgba(59, 130, 246, 0.5)");
         grad.addColorStop(1, "rgba(56, 189, 248, 0.7)");
@@ -134,7 +125,7 @@ function initCanvasAnimation() {
       ctx.fillRect(x, y, barW, bars[i]);
     }
 
-    // Update Analog VU Needle
+    // Update Analog VU Meter Needle
     if (needle) {
       let needleDeg = -18;
       if (isAudioPlaying) {
@@ -151,10 +142,11 @@ function initCanvasAnimation() {
 
     requestAnimationFrame(draw);
   }
-  draw();
+
+  requestAnimationFrame(draw);
 }
 
-// --- 4. SEAMLESS WEB AUDIO ENGINE (ZERO LATENCY A/B CROSSFADE FOR MOBILE & DESKTOP) ---
+// --- 4. SEAMLESS WEB AUDIO ENGINE (ZERO LATENCY A/B CROSSFADE) ---
 let audioCtx = null;
 let dryBuffer = null;
 let wetBuffer = null;
@@ -187,8 +179,8 @@ async function loadBuffers() {
     if (!audioCtx) audioCtx = new AudioContextClass();
 
     const [dryRes, wetRes] = await Promise.all([
-      fetch('chance_dry.mp3'),
-      fetch('chance_wet.mp3')
+      fetch('logue_dry.wav'),
+      fetch('logue_wet.wav')
     ]);
 
     const [dryData, wetData] = await Promise.all([
@@ -221,92 +213,51 @@ function setupWebAudioDemo() {
   const dryBtn = document.getElementById("dryBtn");
   const wetBtn = document.getElementById("wetBtn");
   const dspStatus = document.getElementById("dspStatus");
-  const waveBarsContainer = document.getElementById("waveBars");
 
   // Fallback HTML5 audio elements if Web Audio is unsupported
   const audioDryFallback = document.getElementById("audioDry");
   const audioWetFallback = document.getElementById("audioWet");
 
-  // Build waveform visualizer bars
-  if (waveBarsContainer) {
-    waveBarsContainer.innerHTML = "";
-    for (let i = 0; i < 36; i++) {
-      const b = document.createElement("div");
-      b.className = "wave-bar";
-      waveBarsContainer.appendChild(b);
-    }
-  }
-
-  function updateWaveBars() {
-    if (!waveBarsContainer) return;
-    const bars = waveBarsContainer.children;
-    for (let i = 0; i < bars.length; i++) {
-      if (isAudioPlaying) {
-        const h = isWet ? Math.floor(Math.random() * 38 + 10) : Math.floor(Math.random() * 24 + 6);
-        bars[i].style.height = `${h}px`;
-        bars[i].style.background = isWet ? "#38bdf8" : "#3b82f6";
+  function setPlayingUI(playing) {
+    isAudioPlaying = playing;
+    if (playText && playIcon) {
+      if (playing) {
+        playText.textContent = "Pausa Riproduzione";
+        playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+        playBtn.classList.add("playing");
       } else {
-        bars[i].style.height = "6px";
-        bars[i].style.background = "#212836";
+        playText.textContent = 'Riproduci Synth ("Logue Reference")';
+        playIcon.innerHTML = '<path d="M5 3l14 9-14 9V3z"/>';
+        playBtn.classList.remove("playing");
       }
     }
   }
-  setInterval(updateWaveBars, 80);
 
-  function setPlayingUI(playing) {
-    isAudioPlaying = playing;
-    if (playing) {
-      if (playBtn) playBtn.style.background = "#22c55e";
-      if (playText) playText.textContent = "Pausa Traccia";
-      if (playIcon) playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-    } else {
-      if (playBtn) playBtn.style.background = "";
-      if (playText) playText.textContent = 'Riproduci Traccia ("Chance")';
-      if (playIcon) playIcon.innerHTML = '<path d="M5 3l14 9-14 9V3z"/>';
-    }
-  }
-
-  function setupRouting() {
-    if (!audioCtx) return;
-    if (!gainDry) gainDry = audioCtx.createGain();
-    if (!gainWet) gainWet = audioCtx.createGain();
-    if (!masterGain) masterGain = audioCtx.createGain();
-    if (!realAnalyser) {
-      realAnalyser = audioCtx.createAnalyser();
-      realAnalyser.fftSize = 128;
+  async function startWebAudio() {
+    await initAudioContext();
+    const ready = await loadBuffers();
+    if (!ready || !dryBuffer || !wetBuffer) {
+      fallbackPlay();
+      return;
     }
 
-    gainDry.disconnect();
-    gainWet.disconnect();
-    masterGain.disconnect();
-    realAnalyser.disconnect();
+    stopWebAudioSources();
+
+    gainDry = audioCtx.createGain();
+    gainWet = audioCtx.createGain();
+    masterGain = audioCtx.createGain();
+
+    realAnalyser = audioCtx.createAnalyser();
+    realAnalyser.fftSize = 256;
+    realAnalyser.smoothingTimeConstant = 0.8;
+
+    gainDry.gain.setValueAtTime(isWet ? 0.0 : 1.0, audioCtx.currentTime);
+    gainWet.gain.setValueAtTime(isWet ? 1.0 : 0.0, audioCtx.currentTime);
 
     gainDry.connect(masterGain);
     gainWet.connect(masterGain);
     masterGain.connect(realAnalyser);
     realAnalyser.connect(audioCtx.destination);
-
-    // Initial gains based on active selection
-    gainDry.gain.setValueAtTime(isWet ? 0.0 : 1.0, audioCtx.currentTime);
-    gainWet.gain.setValueAtTime(isWet ? 1.0 : 0.0, audioCtx.currentTime);
-  }
-
-  async function startWebAudio() {
-    await initAudioContext();
-    if (!dryBuffer || !wetBuffer) {
-      if (playText) playText.textContent = "Caricamento audio...";
-      const ok = await loadBuffers();
-      if (!ok) {
-        // Fallback to HTML5 audio if decode failed
-        fallbackPlay();
-        return;
-      }
-    }
-
-    setupRouting();
-
-    // Stop any existing sources
-    stopWebAudioSources();
 
     sourceDry = audioCtx.createBufferSource();
     sourceWet = audioCtx.createBufferSource();
@@ -390,12 +341,11 @@ function setupWebAudioDemo() {
       dryBtn.classList.add("active");
       if (wetBtn) wetBtn.classList.remove("active");
       if (dspStatus) {
-        dspStatus.textContent = "Attivo: BYPASS (Segnale Diretto Originale)";
+        dspStatus.textContent = "Attivo: BYPASS (Korg Minilogue Dry Diretto)";
         dspStatus.style.color = "var(--primary)";
       }
 
       if (audioCtx && gainDry && gainWet) {
-        // Ultra smooth 15ms sample-accurate crossfade
         const t = audioCtx.currentTime;
         gainDry.gain.cancelScheduledValues(t);
         gainWet.gain.cancelScheduledValues(t);
@@ -420,12 +370,11 @@ function setupWebAudioDemo() {
       wetBtn.classList.add("active");
       if (dryBtn) dryBtn.classList.remove("active");
       if (dspStatus) {
-        dspStatus.textContent = "Attivo: PLF CHANNEL (Console Glue + Dynamic EQ + Exciter)";
-        dspStatus.style.color = "var(--gold)";
+        dspStatus.textContent = "Attivo: PLF SPACE DESIGNER (Supermassive 3D Cloud + Granular Haze)";
+        dspStatus.style.color = "#00e5ff";
       }
 
       if (audioCtx && gainDry && gainWet) {
-        // Ultra smooth 15ms sample-accurate crossfade
         const t = audioCtx.currentTime;
         gainDry.gain.cancelScheduledValues(t);
         gainWet.gain.cancelScheduledValues(t);
@@ -446,24 +395,9 @@ function setupWebAudioDemo() {
   loadBuffers();
 }
 
-// --- 5. INTERACTIVE KNOB ROTATION ON CLICK ---
-function setupInteractiveKnobs() {
-  document.querySelectorAll(".knob-mock").forEach(knob => {
-    knob.addEventListener("click", () => {
-      const line = knob.querySelector(".knob-line");
-      if (!line) return;
-      const currentRot = line.style.transform.match(/rotate\(([-\d]+)deg\)/);
-      let deg = currentRot ? parseInt(currentRot[1]) : 0;
-      deg = (deg + 45 > 135) ? -135 : deg + 45;
-      line.style.transform = `rotate(${deg}deg)`;
-    });
-  });
-}
-
-// Initialize on DOM Ready
+// Initialise everything on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   renderPresets("all");
   initCanvasAnimation();
   setupWebAudioDemo();
-  setupInteractiveKnobs();
 });
