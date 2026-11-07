@@ -132,13 +132,13 @@ function initCanvasAnimation() {
   draw();
 }
 
-// --- 4. REAL AUDIO PLAYER DEMO (CHANCE.WAV STUDIO SNIPPET: DRY VS WET) ---
-const audioDry = new Audio('chance_dry.mp3');
-const audioWet = new Audio('chance_wet.mp3');
-audioDry.loop = true;
-audioWet.loop = true;
-audioDry.preload = 'auto';
-audioWet.preload = 'auto';
+// --- 4. REAL AUDIO PLAYER DEMO (ONE SINGLE STREAM — ZERO ECHO, ZERO DOUBLE SOUND) ---
+const demoAudio = new Audio('chance_wet.mp3');
+demoAudio.loop = true;
+demoAudio.preload = 'auto';
+
+let isAudioPlaying = false;
+let isWet = true; // Default to the PLF Channel master sound!
 
 function setupWebAudioDemo() {
   const playBtn = document.getElementById("playBtn");
@@ -147,10 +147,6 @@ function setupWebAudioDemo() {
   const wetBtn = document.getElementById("wetBtn");
   const dspStatus = document.getElementById("dspStatus");
   const waveBarsContainer = document.getElementById("waveBars");
-
-  // Initial volume balance
-  audioDry.volume = 1.0;
-  audioWet.volume = 0.0;
 
   // Sound Wave Bars in UI
   if (waveBarsContainer) {
@@ -181,49 +177,48 @@ function setupWebAudioDemo() {
   playBtn.addEventListener("click", () => {
     isAudioPlaying = !isAudioPlaying;
     if (isAudioPlaying) {
-      audioDry.currentTime = 0;
-      audioWet.currentTime = 0;
-      if (isWet) {
-        audioDry.volume = 0.0;
-        audioWet.volume = 1.0;
-      } else {
-        audioDry.volume = 1.0;
-        audioWet.volume = 0.0;
-      }
-      audioDry.play().catch(e => console.log(e));
-      audioWet.play().catch(e => console.log(e));
+      demoAudio.play().catch(e => console.log(e));
       playBtn.style.background = "#22c55e";
       playText.textContent = "Pausa Traccia";
     } else {
-      audioDry.pause();
-      audioWet.pause();
+      demoAudio.pause();
       playBtn.style.background = "";
       playText.textContent = "Riproduci Traccia (\"Chance\")";
     }
   });
 
   dryBtn.addEventListener("click", () => {
+    if (!isWet) return;
     isWet = false;
     dryBtn.classList.add("active");
     wetBtn.classList.remove("active");
     dspStatus.textContent = "Attivo: BYPASS (Segnale Diretto Originale)";
     dspStatus.style.color = "var(--primary)";
 
-    // Instant volume swap - ZERO seeking, ZERO lag!
-    audioWet.volume = 0.0;
-    audioDry.volume = 1.0;
+    // Switch stream to DRY preserving exact timestamp with zero echo
+    const pos = demoAudio.currentTime;
+    demoAudio.src = 'chance_dry.mp3';
+    demoAudio.currentTime = pos;
+    if (isAudioPlaying) {
+      demoAudio.play().catch(e => console.log(e));
+    }
   });
 
   wetBtn.addEventListener("click", () => {
+    if (isWet) return;
     isWet = true;
     wetBtn.classList.add("active");
     dryBtn.classList.remove("active");
     dspStatus.textContent = "Attivo: PLF CHANNEL (Console Glue + Dynamic EQ + Exciter)";
     dspStatus.style.color = "var(--gold)";
 
-    // Instant volume swap - ZERO seeking, ZERO lag!
-    audioDry.volume = 0.0;
-    audioWet.volume = 1.0;
+    // Switch stream to WET preserving exact timestamp with zero echo
+    const pos = demoAudio.currentTime;
+    demoAudio.src = 'chance_wet.mp3';
+    demoAudio.currentTime = pos;
+    if (isAudioPlaying) {
+      demoAudio.play().catch(e => console.log(e));
+    }
   });
 }
 
