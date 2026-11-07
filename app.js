@@ -133,20 +133,20 @@ function initCanvasAnimation() {
 }
 
 // --- 4. REAL AUDIO PLAYER DEMO (ONE SINGLE STREAM — ZERO ECHO, ZERO DOUBLE SOUND) ---
-const demoAudio = new Audio('chance_wet.mp3');
-demoAudio.loop = true;
-demoAudio.preload = 'auto';
-
 let isAudioPlaying = false;
 let isWet = true; // Default to the PLF Channel master sound!
 
 function setupWebAudioDemo() {
+  const demoAudio = document.getElementById("playerAudio") || new Audio('chance_wet.mp3');
   const playBtn = document.getElementById("playBtn");
   const playText = document.getElementById("playText");
   const dryBtn = document.getElementById("dryBtn");
   const wetBtn = document.getElementById("wetBtn");
   const dspStatus = document.getElementById("dspStatus");
   const waveBarsContainer = document.getElementById("waveBars");
+
+  demoAudio.loop = true;
+  demoAudio.preload = 'auto';
 
   // Sound Wave Bars in UI
   if (waveBarsContainer) {
@@ -162,7 +162,7 @@ function setupWebAudioDemo() {
     if (!waveBarsContainer) return;
     const bars = waveBarsContainer.children;
     for (let i = 0; i < bars.length; i++) {
-      if (isAudioPlaying) {
+      if (!demoAudio.paused) {
         const h = isWet ? Math.floor(Math.random() * 38 + 10) : Math.floor(Math.random() * 24 + 6);
         bars[i].style.height = `${h}px`;
         bars[i].style.background = isWet ? "#38bdf8" : "#3b82f6";
@@ -174,16 +174,24 @@ function setupWebAudioDemo() {
   }
   setInterval(updateWaveBars, 80);
 
+  // Sync isAudioPlaying with native audio element events
+  demoAudio.addEventListener('play', () => {
+    isAudioPlaying = true;
+    playBtn.style.background = "#22c55e";
+    playText.textContent = "Pausa Traccia";
+  });
+
+  demoAudio.addEventListener('pause', () => {
+    isAudioPlaying = false;
+    playBtn.style.background = "";
+    playText.textContent = "Riproduci Traccia (\"Chance\")";
+  });
+
   playBtn.addEventListener("click", () => {
-    isAudioPlaying = !isAudioPlaying;
-    if (isAudioPlaying) {
-      demoAudio.play().catch(e => console.log(e));
-      playBtn.style.background = "#22c55e";
-      playText.textContent = "Pausa Traccia";
+    if (demoAudio.paused) {
+      demoAudio.play().catch(e => console.log("Audio play error:", e));
     } else {
       demoAudio.pause();
-      playBtn.style.background = "";
-      playText.textContent = "Riproduci Traccia (\"Chance\")";
     }
   });
 
@@ -195,11 +203,12 @@ function setupWebAudioDemo() {
     dspStatus.textContent = "Attivo: BYPASS (Segnale Diretto Originale)";
     dspStatus.style.color = "var(--primary)";
 
-    // Switch stream to DRY preserving exact timestamp with zero echo
+    const wasPlaying = !demoAudio.paused;
     const pos = demoAudio.currentTime;
+    demoAudio.pause();
     demoAudio.src = 'chance_dry.mp3';
     demoAudio.currentTime = pos;
-    if (isAudioPlaying) {
+    if (wasPlaying) {
       demoAudio.play().catch(e => console.log(e));
     }
   });
@@ -212,11 +221,12 @@ function setupWebAudioDemo() {
     dspStatus.textContent = "Attivo: PLF CHANNEL (Console Glue + Dynamic EQ + Exciter)";
     dspStatus.style.color = "var(--gold)";
 
-    // Switch stream to WET preserving exact timestamp with zero echo
+    const wasPlaying = !demoAudio.paused;
     const pos = demoAudio.currentTime;
+    demoAudio.pause();
     demoAudio.src = 'chance_wet.mp3';
     demoAudio.currentTime = pos;
-    if (isAudioPlaying) {
+    if (wasPlaying) {
       demoAudio.play().catch(e => console.log(e));
     }
   });
