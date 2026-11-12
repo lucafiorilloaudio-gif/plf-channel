@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLF Antigravity Audio — PLF Space Designer & PLF Channel VST3</title>
-  <meta name="description" content="Sito ufficiale di PLF Antigravity Audio. Scarica gratuitamente PLF Space Designer (Granular 3D Cloud Reverb) e PLF Channel VST3. Suite DSP analogica e cinematografica per Ableton Live e DAW 64-bit.">
+  <title>PLF Antigravity Audio — PLF Sequentia, PLF Space Designer & PLF Channel</title>
+  <meta name="description" content="Sito ufficiale di PLF Antigravity Audio. Scarica gratuitamente PLF Sequentia (Human-Feel Generative MIDI Sequencer per Ableton Live su Windows & Mac), PLF Space Designer e PLF Channel VST3.">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    <span>✨ NUOVO RILASCIO: <strong>PLF Space Designer v1.1.0 VST3</strong> è ora disponibile! 21 Algoritmi di Riverbero, 12 Pomelli Dedicati e 23 Preset Cinematici.</span>
+    <span>✨ NUOVO RILASCIO: <strong>PLF Sequentia v1.0.0</strong> è ora disponibile! Human-Feel Generative Sequencer per Ableton Live (Windows & Mac).</span>
   </div>
 
   <!-- Navigation -->
@@ -24,12 +24,11 @@
         <span class="logo-accent">PLF</span> ANTIGRAVITY <span class="badge-tag">AUDIO DSP</span>
       </div>
       <nav class="nav-links">
+        <a href="#sequentia">PLF Sequentia</a>
         <a href="#featured">Space Designer</a>
-        <a href="#demo">Demo A/B (Logue)</a>
+        <a href="#demo">Demo A/B</a>
         <a href="#features">Caratteristiche</a>
-        <a href="#algorithms">21 Algoritmi</a>
-        <a href="#presets">23 Preset</a>
-        <a href="#catalog">PLF Channel</a>
+        <a href="#catalog">Catalogo Suite</a>
       </nav>
       <div class="nav-cta">
         <a href="PLF_Space_Designer_vst3_PLF_Antigravity.zip" class="btn btn-primary btn-sm" download>
@@ -265,7 +264,17 @@
       </p>
 
       <div class="catalog-grid">
-        <!-- Item 1: PLF Space Designer -->
+        <!-- Item 1: PLF Sequentia -->
+        <div class="catalog-card active-product" id="sequentia" style="border: 1px solid rgba(47, 192, 208, 0.4); box-shadow: 0 8px 30px rgba(47, 192, 208, 0.15);">
+          <div class="product-status available" style="background: rgba(47, 192, 208, 0.2); color: #2FC0D0; border: 1px solid #2FC0D0;">NUOVO RILASCIO • V1.0.0</div>
+          <img src="plf_sequentia_gui.png" alt="PLF Sequentia GUI" style="width: 100%; border-radius: 8px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.12);">
+          <h3>PLF Sequentia</h3>
+          <p class="product-type">Human-Feel Generative Monophonic MIDI Sequencer (Windows & Mac)</p>
+          <p class="product-desc">Algoritmi ispirati al groove e alla dinamica di Bonobo, Kiasmos e Stephan Bodzin. Monophonic analog portamento/legato per Moog e Acid 303, real human micro-nudge a campioni, 10 scale modali e Drag & Drop MIDI per Ableton Live.</p>
+          <a href="PLF_Sequentia_vst3_PLF_Antigravity.zip" class="btn btn-primary btn-sm" download>Scarica PLF Sequentia (Win & Mac)</a>
+        </div>
+
+        <!-- Item 2: PLF Space Designer -->
         <div class="catalog-card active-product">
           <div class="product-status available">DISPONIBILE ORA • V1.1.0</div>
           <h3>PLF Space Designer</h3>
@@ -275,7 +284,7 @@
           <a href="Manuale_Utente_PLF_Space_Designer.pdf" class="btn btn-secondary btn-sm" style="margin-top: 8px;" target="_blank">Manuale PDF</a>
         </div>
 
-        <!-- Item 2: PLF Channel -->
+        <!-- Item 3: PLF Channel -->
         <div class="catalog-card active-product">
           <div class="product-status available">DISPONIBILE ORA • V1.0.0</div>
           <h3>PLF Channel</h3>
@@ -285,7 +294,7 @@
           <a href="Manuale_Utente_PLF_Channel.pdf" class="btn btn-secondary btn-sm" style="margin-top: 8px;" target="_blank">Manuale PDF</a>
         </div>
 
-        <!-- Item 3: Upcoming Tape Machine -->
+        <!-- Item 4: Upcoming Tape Machine -->
         <div class="catalog-card upcoming">
           <div class="product-status soon">IN ARRIVO</div>
           <h3>PLF Vintage Tape</h3>
@@ -311,15 +320,15 @@
           </tr>
           <tr>
             <td>Formato Plugin</td>
-            <td><strong>VST3 (64-bit)</strong> compatibile con specifica VST3.7</td>
+            <td><strong>VST3 (64-bit) & AU (AudioUnit Component)</strong> compatibile con VST3.7 & AUv2</td>
           </tr>
           <tr>
             <td>Sistemi Operativi</td>
-            <td>Windows 10, Windows 11 (64-bit)</td>
+            <td><strong>Windows 10 / 11 (64-bit)</strong> & <strong>macOS 10.13+</strong> (Apple Silicon M1/M2/M3/M4 & Intel Universal Binary)</td>
           </tr>
           <tr>
             <td>DAW Testate</td>
-            <td>Ableton Live 11/12, FL Studio 21+, Reaper 7+, Cubase 13+, Studio One 6+, Bitwig Studio</td>
+            <td><strong>Ableton Live 11/12 (Windows & Mac)</strong>, Logic Pro, FL Studio 21+, Reaper 7+, Cubase 13+, Studio One 6+, Bitwig Studio</td>
           </tr>
           <tr>
             <td>Frequenze di Campionamento</td>
@@ -327,7 +336,7 @@
           </tr>
           <tr>
             <td>Overhead CPU</td>
-            <td>Ottimizzato con istruzioni AVX2 SIMD per bassissimo impatto sulla CPU</td>
+            <td>Ottimizzato con istruzioni AVX2 SIMD e buffer lock-free per bassissimo impatto sulla CPU (zero glitch audio)</td>
           </tr>
           <tr>
             <td>Licenza</td>
@@ -348,7 +357,8 @@
         <p>Strumenti audio digitali di livello boutique, modellati sul calore dell'hardware e progettati per i produttori di oggi.</p>
       </div>
       <div class="footer-links">
-        <h4>Download</h4>
+        <h4>Download Gratuiti</h4>
+        <a href="PLF_Sequentia_vst3_PLF_Antigravity.zip" download>PLF Sequentia VST3 (Win & Mac)</a>
         <a href="PLF_Space_Designer_vst3_PLF_Antigravity.zip" download>PLF Space Designer VST3</a>
         <a href="Manuale_Utente_PLF_Space_Designer.pdf" target="_blank">Manuale Space Designer PDF</a>
         <a href="PLF_Channel_vst3_PLF_Antigravity.zip" download>PLF Channel VST3</a>
