@@ -72,7 +72,7 @@
         <span>✓ 100% Gratuito</span>
         <span>✓ 12 Pomelli Dedicati (No Shift)</span>
         <span>✓ 21 Algoritmi Valhalla-Grade</span>
-        <span>✓ 23 Preset Cinematici (Burial, Bonobo, Kiasmos)</span>
+        <span>✓ 33 Preset Calibrati (Studio & Cinematic)</span>
       </div>
 
       <!-- Plugin Real Interface Display -->
@@ -87,8 +87,16 @@
           <div class="preview-status">ONLINE 64-BIT</div>
         </div>
         
+        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 12px;">
+          <button id="guiLongBtn" class="btn btn-sm btn-primary" onclick="document.getElementById('guiImg').src='plf_space_designer_gui.png'; this.classList.add('btn-primary'); this.classList.remove('btn-secondary'); document.getElementById('guiShortBtn').classList.remove('btn-primary'); document.getElementById('guiShortBtn').classList.add('btn-secondary');">
+            ★ MODALITÀ LONG (COSMIC EXPANSIVE)
+          </button>
+          <button id="guiShortBtn" class="btn btn-sm btn-secondary" onclick="document.getElementById('guiImg').src='plf_space_designer_gui_short.png'; this.classList.add('btn-primary'); this.classList.remove('btn-secondary'); document.getElementById('guiLongBtn').classList.remove('btn-primary'); document.getElementById('guiLongBtn').classList.add('btn-secondary');">
+            ⚡ MODALITÀ SHORT (STUDIO REFLECTION)
+          </button>
+        </div>
         <div class="preview-real-wrapper">
-          <img src="plf_space_designer_gui.png" alt="PLF Space Designer VST3 GUI" class="plugin-real-screenshot">
+          <img id="guiImg" src="plf_space_designer_gui.png" alt="PLF Space Designer VST3 GUI" class="plugin-real-screenshot">
         </div>
       </div>
     </div>
@@ -159,9 +167,21 @@
 
       <div class="features-grid">
         <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Dual Space Engine: SHORT vs LONG</h3>
+          <p>Passa all'istante da riflessioni intime da studio (SHORT - chassis dark slate e decay 0.2s) a code celestiali infinite (LONG - chassis vintage cream e feedback fino allo 0.998). I preset si adattano automaticamente.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Master Output & MIX LOCK</h3>
+          <p>Pomelli ingranditi Mix e Trim Out in basso a destra con indicatore dB e pulsante LOCK: blocca il tuo mix ideale mentre sfogli l'intero archivio preset senza perdere il bilanciamento.</p>
+        </div>
+
+        <div class="feature-card">
           <div class="feature-icon">🎛️</div>
           <h3>12 Pomelli Fisici Permanenti</h3>
-          <p>Nessun pulsante "Shift" o parametri nascosti. Activity, Shape, Mod Rate, Time, Repeats, Mod Depth, Filter, Resonance, Space, Mix, Loop Level e Trim Out sempre a portata di mano.</p>
+          <p>Nessun pulsante "Shift" o parametri nascosti. Activity, Shape, Mod Rate, Time, Repeats, Mod Depth, Filter, Resonance, Space, Damping, Diffusion e Loop Level sempre a portata di mano.</p>
         </div>
 
         <div class="feature-card">
