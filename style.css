@@ -75,6 +75,9 @@ body {
   font-weight: 800;
   letter-spacing: 0.5px;
   color: var(--text-main);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 20px;
 }
 
 .logo-accent {
@@ -94,7 +97,9 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
