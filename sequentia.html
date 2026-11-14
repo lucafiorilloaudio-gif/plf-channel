@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLF Sequentia v1.1.0 — Human-Feel Generative Monophonic MIDI Sequencer (VST3)</title>
+  <meta name="description" content="PLF Sequentia: Sequencer MIDI generativo monophonic con human groove naturale, 10 scale modali, portamento e drag & drop MIDI per Ableton Live su Windows x64.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar" style="background: linear-gradient(90deg, #0284c7, #2FC0D0, #38bdf8); color: #fff;">
+    <span>⚡ <strong>PLF Sequentia v1.1.0</strong>: Strumento MIDI VST3 per Ableton Live con Groove Umano Naturale e Drag &amp; Drop MIDI.</span>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <div class="logo">
+        <a href="index.html" style="color: inherit; text-decoration: none;">
+          <span class="logo-accent">PLF</span> ANTIGRAVITY <span class="badge-tag">AUDIO DSP</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" style="color: var(--primary); font-weight: 700;">← Tutti i Plugin</a>
+        <a href="space-designer.html">Space Designer</a>
+        <a href="little-cosm.html">Little Cosm</a>
+        <a href="sequentia.html" style="color: #2FC0D0; font-weight: 700;">Sequentia</a>
+        <a href="channel.html">PLF Channel</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="INSTALLA_PLF_Sequentia.exe" class="btn btn-primary btn-sm" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download (.EXE)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-badge" style="background: rgba(47, 192, 208, 0.15); color: #2FC0D0; border-color: rgba(47, 192, 208, 0.35);">
+        <span class="pulse-dot" style="background: #2FC0D0;"></span> Strumento / Synth MIDI VST3 64-bit • Ableton Live (Traccia MIDI)
+      </div>
+      <h1 class="hero-title">
+        Groove Umano Naturale &amp; Melodie Vive.<br>
+        <span class="gradient-text" style="background: linear-gradient(135deg, #2FC0D0, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Generative Monophonic MIDI Sequencer.</span>
+      </h1>
+      <p class="hero-lead">
+        <strong>PLF Sequentia</strong> è il generatore di pattern melodici, arpeggi ed evoluzioni ritmiche creato da <strong>PLF Antigravity</strong> per trasformare la scrittura musicale in un flusso creativo immediato. Ispirato al sound organico e progressivo di <strong>Stephan Bodzin, Bonobo e Kiasmos</strong>, include un motore di micro-timing a campioni per un groove autentico privo di rigidità digitale, 10 scale modali armoniche, glide/portamento continuo per bassline stile Moog e Acid 303, esportazione istantanea via Drag &amp; Drop MIDI e gestione completa dei preset in formato <code>.plfpreset</code>.
+      </p>
+
+      <div class="hero-actions">
+        <a href="INSTALLA_PLF_Sequentia.exe" class="btn btn-primary btn-lg" download style="background: linear-gradient(135deg, #0284c7, #2FC0D0); border: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Installa Sequentia v1.1.0 (.EXE) <span class="btn-subtext">(1 Clic per Windows x64)</span>
+        </a>
+        <a href="PLF_Sequentia_vst3_PLF_Antigravity.zip" class="btn btn-secondary btn-lg" download>
+          Scarica ZIP + BAT (.ZIP)
+        </a>
+        <a href="PLF_Antigravity_VST3_Installer.exe" class="btn btn-secondary btn-lg" download>
+          Scarica Tutta la Suite (.EXE)
+        </a>
+      </div>
+
+      <div class="hero-guarantees">
+        <span>✓ 100% Gratuito</span>
+        <span>✓ Zero Latenza (0 samples)</span>
+        <span>✓ CPU Minima (&lt; 0.15%)</span>
+        <span>✓ Drag &amp; Drop MIDI su Ableton</span>
+      </div>
+
+      <!-- Real Plugin Interface Preview -->
+      <div class="plugin-preview-card" style="border-color: rgba(47, 192, 208, 0.35);">
+        <div class="preview-header">
+          <div class="preview-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="preview-title">PLF SEQUENTIA // GENERATIVE MIDI SEQUENCER INTERFACE</div>
+          <div class="preview-status" style="color: #2FC0D0;">VST3 64-BIT ONLINE</div>
+        </div>
+        <div class="preview-real-wrapper">
+          <img src="plf_sequentia_gui.png" alt="PLF Sequentia VST3 GUI" class="plugin-real-screenshot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="section features-section">
+    <div class="container">
+      <div class="section-badge" style="background: rgba(47, 192, 208, 0.15); color: #2FC0D0; border-color: rgba(47, 192, 208, 0.35);">FUNZIONALITÀ PRINCIPALI</div>
+      <h2 class="section-title">Tecnologia Generativa e Controllo Musicale</h2>
+      <p class="section-lead">
+        Progettato per superare il blocco dello scrittore e generare frasi musicali pronte per il club o per colonne sonore:
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card" style="border-left: 4px solid #2FC0D0;">
+          <div class="feature-icon">⏱️</div>
+          <h3>Human Groove &amp; Micro-Nudge</h3>
+          <p>Scostamento temporale micro-ritmico casuale controllabile, modulazione della velocity a dinamica naturale e probabilità di step per sequenze sempre in mutazione organica.</p>
+        </div>
+
+        <div class="feature-card" style="border-left: 4px solid #818cf8;">
+          <div class="feature-icon">🎼</div>
+          <h3>10 Scale Modali Intelligenti</h3>
+          <p>Blocco istantaneo delle note su scale Dorica, Eolica, Frigia, Lidia, Misolidia, Pentatonica Minore, Pentatonica Maggiore, Blues, Minore Armonica e Cromatica.</p>
+        </div>
+
+        <div class="feature-card" style="border-left: 4px solid #f59e0b;">
+          <div class="feature-icon">🎹</div>
+          <h3>Glide &amp; Legato Analogico</h3>
+          <p>Portamento regolabile con precisione per emulare il comportamento delle tastiere analogiche vintage Moog e Roland TB-303, creando transizioni morbide tra note consecutive legate.</p>
+        </div>
+
+        <div class="feature-card" style="border-left: 4px solid #22c55e;">
+          <div class="feature-icon">📥</div>
+          <h3>Drag &amp; Drop MIDI Diretto</h3>
+          <p>Un comodo pulsante di trascinamento permette di rilasciare all'istante il pattern MIDI generato direttamente su una clip di traccia in Ableton Live per editing manuale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ableton Guide Section -->
+  <section class="section" style="background: rgba(255,255,255,0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-badge">ABLETON LIVE GUIDE</div>
+      <h2 class="section-title">Come Utilizzare PLF Sequentia in Ableton Live</h2>
+      <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); padding: 32px; border-radius: 12px; border: 1px solid var(--border-color);">
+        <ol style="padding-left: 24px; line-height: 1.8; color: var(--text-muted);">
+          <li><strong style="color: var(--text-main);">Tipo in Ableton:</strong> PLF Sequentia è categorizzato come <strong style="color: #2FC0D0;">Strumento (Instrument / Synth)</strong>.</li>
+          <li><strong style="color: var(--text-main);">Traccia Richiesta:</strong> Va trascinato su una <strong style="color: var(--text-main);">TRACCIA MIDI</strong> (non su una traccia audio!). Nel browser di Ableton: <code>Plug-in -&gt; VST3 -&gt; PLF Antigravity -&gt; PLF Sequentia</code>.</li>
+          <li><strong style="color: var(--text-main);">Suono Interno o Routing Esterno:</strong> Puoi ascoltare direttamente il sintetizzatore analogico interno integrato con filtri e inviluppi, oppure indirizzare il suo flusso MIDI verso qualsiasi altro plug-in della tua sessione (es. Serum, Vital, Diva, Wavetable o sintetizzatori hardware via scheda audio).</li>
+          <li><strong style="color: var(--text-main);">Salvataggio Pattern:</strong> Usa i tasti <strong>+NEW</strong>, <strong>SAVE</strong>, <strong>REN</strong> ed <strong>EXP</strong> per conservare o condividere i tuoi pattern melodici preferiti.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation to other plugins -->
+  <section class="section catalog-section">
+    <div class="container">
+      <div class="section-badge">SUITE COMPLETA</div>
+      <h2 class="section-title">Scopri gli Altri Plugin PLF Antigravity</h2>
+      <div class="catalog-grid">
+        <div class="catalog-card active-product">
+          <div class="product-status available">EFFETTO AUDIO • V1.2.1</div>
+          <a href="space-designer.html"><img src="plf_space_designer_gui.png" alt="PLF Space Designer" style="width: 100%; border-radius: 8px; margin: 12px 0;"></a>
+          <h3>PLF Space Designer</h3>
+          <p class="product-type">Granular Space * Convolution IR * Cloud Reverb</p>
+          <p class="product-desc">21 Algoritmi di riverbero, Convoluzione Altiverb/Soundtoys, modalità SHORT/LONG e 31 preset calibrati.</p>
+          <a href="space-designer.html" class="btn btn-primary btn-sm">👉 Scheda Space Designer</a>
+        </div>
+        <div class="catalog-card active-product">
+          <div class="product-status available">EFFETTO AUDIO • V1.1.0</div>
+          <a href="little-cosm.html"><img src="plf_little_cosm_gui.png" alt="PLF Little Cosm" style="width: 100%; border-radius: 8px; margin: 12px 0;"></a>
+          <h3>PLF Little Cosm</h3>
+          <p class="product-type">Vintage Hardware Analog Color &amp; Texture Console</p>
+          <p class="product-desc">Console in mogano massello a 4 moduli, saturazione a nastro/valvole e interpolazione Hermite.</p>
+          <a href="little-cosm.html" class="btn btn-primary btn-sm">👉 Scheda Little Cosm</a>
+        </div>
+        <div class="catalog-card active-product">
+          <div class="product-status available">EFFETTO AUDIO • V1.1.0</div>
+          <a href="channel.html"><img src="plf_channel_gui.png" alt="PLF Channel" style="width: 100%; border-radius: 8px; margin: 12px 0;"></a>
+          <h3>PLF Channel</h3>
+          <p class="product-type">Analog Console Channel Strip &amp; Bus Processor</p>
+          <p class="product-desc">EQ a 4 bande SSL 4000 E/G, G-Bus glue compressor, transient designer e imager.</p>
+          <a href="channel.html" class="btn btn-primary btn-sm">👉 Scheda PLF Channel</a>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 35px;">
+        <a href="index.html" class="btn btn-secondary btn-lg">← Torna al Catalogo Principale (Tutti i Plugin)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-accent">PLF</span> ANTIGRAVITY <span class="badge-tag">AUDIO DSP</span>
+        </div>
+        <p>Strumenti audio digitali di livello boutique, modellati sul calore dell'hardware e progettati per i produttori di oggi.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Download</h4>
+        <a href="PLF_Antigravity_VST3_Installer.exe" download><strong>Installer Unico 4 Plugin (.EXE)</strong></a>
+        <a href="INSTALLA_PLF_Sequentia.exe" download>PLF Sequentia (.EXE)</a>
+        <a href="PLF_Sequentia_vst3_PLF_Antigravity.zip" download>PLF Sequentia (.ZIP + .BAT)</a>
+        <a href="space-designer.html">PLF Space Designer</a>
+        <a href="little-cosm.html">PLF Little Cosm</a>
+        <a href="channel.html">PLF Channel</a>
+      </div>
+    </div>
+    <div class="container copyright">
+      <p>© 2026 PLF Antigravity Audio. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

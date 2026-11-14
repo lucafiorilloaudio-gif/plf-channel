@@ -911,3 +911,211 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Catalog & Hub Styles
+   ========================================================================== */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+  margin: 32px 0 60px 0;
+}
+
+.catalog-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.catalog-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 24px rgba(56, 189, 248, 0.15);
+}
+
+.catalog-card-image {
+  position: relative;
+  background: #080b11;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px;
+  text-align: center;
+  overflow: hidden;
+  display: block;
+}
+
+.catalog-card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.catalog-card:hover .catalog-card-image img {
+  transform: scale(1.02);
+}
+
+.catalog-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(13, 17, 23, 0.92);
+  border: 1px solid var(--border-bright);
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.catalog-card-type {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.catalog-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.catalog-card-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--text-main);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.catalog-card-title:hover {
+  color: var(--primary);
+}
+
+.catalog-card-subtitle {
+  font-size: 0.88rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.catalog-card-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.catalog-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.catalog-card-features li {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.catalog-card-features li strong {
+  color: var(--text-main);
+}
+
+.catalog-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-view-plugin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  color: #04101d;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+}
+
+.btn-view-plugin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(56, 189, 248, 0.4);
+  filter: brightness(1.1);
+}
+
+.catalog-card-downloads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-download-quick {
+  background: #171e2c;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-download-quick:hover {
+  background: var(--border-color);
+  color: var(--text-main);
+  border-color: var(--border-bright);
+}
+
+/* Suite Hero Card */
+.suite-hero-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0d1b2a 100%);
+  border: 2px solid #38bdf8;
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin: 30px 0 50px 0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.2);
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .suite-hero-card {
+    grid-template-columns: 1fr;
+  }
+}
