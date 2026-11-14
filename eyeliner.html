@@ -4,179 +4,282 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PLF Eyeliner v1.0.0 — Multitrack Phase Alignment & Sum Engine (VST3)</title>
-  <meta name="description" content="PLF Eyeliner: Plugin VST3 per la gestione e l'allineamento di fase dei multitraccia in Ableton Live. Dotato di transient-matching e cross-correlazione sub-sample Hermite.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="PLF Eyeliner: Plugin VST3 per la gestione e l'allineamento di fase dei multitraccia in Ableton Live. Dotato di transient-matching, sub-sample Hermite e Master Dynamic EQ.">
+  <meta name="keywords" content="PLF Eyeliner, allineamento di fase ableton, phase alignment vst3, multitrack phase, VocAlign alternative, Auto-Align, PLF Antigravity">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Top Announcement Bar -->
-  <div class="announcement-bar" style="background: linear-gradient(90deg, #27e870, #10b981, #047857); color: #000; font-weight: 700;">
-    <span>⚡ <strong>NUOVO: PLF Eyeliner v1.0.0</strong> — Allineamento di Fase Multitraccia Chirurgico per Ableton Live & Windows x64.</span>
+  <div class="announcement-bar" style="background: linear-gradient(90deg, #059669, #10b981, #34d399); color: #04101d; font-weight: 700;">
+    ⚡ <strong>NUOVO: PLF Eyeliner v1.0.0</strong> &mdash; Allineamento di Fase Multitraccia Chirurgico per Ableton Live & Windows x64
   </div>
 
-  <!-- Navigation -->
+  <!-- Navigation Bar -->
   <header class="navbar">
-    <div class="container nav-content">
-      <div class="logo">
-        <a href="index.html" style="color: inherit; text-decoration: none;">
-          <span class="logo-accent">PLF</span> ANTIGRAVITY <span class="badge-tag">AUDIO DSP</span>
-        </a>
-      </div>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">PLF</span>
+        <span class="logo-text">ANTIGRAVITY <span class="logo-sub">AUDIO DSP</span></span>
+      </a>
+
       <nav class="nav-links">
-        <a href="index.html" style="color: var(--primary); font-weight: 700;">← Catalogo</a>
-        <a href="space-designer.html">Space Designer</a>
-        <a href="little-cosm.html">Little Cosm</a>
-        <a href="sequentia.html">Sequentia</a>
-        <a href="channel.html">Channel</a>
-        <a href="eyeliner.html" style="color: #27e870; font-weight: 700;">PLF Eyeliner</a>
+        <a href="index.html" class="nav-link" style="color: var(--primary); font-weight: 700;">← Tutti i Plugin</a>
+        <a href="space-designer.html" class="nav-link">Space Designer</a>
+        <a href="little-cosm.html" class="nav-link">Little Cosm</a>
+        <a href="sequentia.html" class="nav-link">Sequentia</a>
+        <a href="channel.html" class="nav-link">Channel</a>
+        <a href="eyeliner.html" class="nav-link active" style="color: #34d399; font-weight: 700;">PLF Eyeliner</a>
       </nav>
-      <div class="nav-cta">
-        <a href="INSTALLA_PLF_Eyeliner.exe" class="btn btn-primary btn-sm" download style="background:#27e870; color:#000;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Download (.EXE)
+
+      <div class="nav-actions">
+        <a href="INSTALLA_PLF_Eyeliner.exe" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #10b981, #34d399); color: #04101d;">
+          <span>Scarica .EXE (Eyeliner)</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section">
+  <section class="hero">
     <div class="container">
-      <div class="hero-badge" style="background: rgba(39, 232, 112, 0.15); color: #27e870; border-color: rgba(39, 232, 112, 0.35);">
-        <span class="pulse-dot" style="background: #27e870;"></span> Effetto Audio VST3 64-bit • Ableton Live &amp; Windows x64
-      </div>
-      <h1 class="hero-title">
-        La Precisione della Fase Svizzera nel tuo Mix.<br>
-        <span class="gradient-text" style="background: linear-gradient(135deg, #27e870, #34d399, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Multitrack Phase Alignment &amp; Sum Engine.</span>
-      </h1>
-      <p class="hero-lead">
-        <strong>PLF Eyeliner</strong> è il processore di allineamento di fase chirurgico per Ableton Live, concepito concettualmente sul modello di VocALign e Sound Radix Auto-Align, con un'estetica hardware senza compromessi Risolve all'istante problemi di comb-filtering, cancellazioni e dispersione temporale tra microfoni multipli di batterie acustiche, bassi DI/mic, cori e voci doppie.
-      </p>
+      <div class="hero-content">
+        <div class="hero-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.35);">
+          EFFETTO AUDIO VST3 64-BIT &bull; ABLETON LIVE &amp; WINDOWS X64
+        </div>
+        <h1 class="hero-title">
+          La Precisione della Fase Svizzera nel tuo Mix:<br>
+          <span class="gradient-text" style="background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PLF Eyeliner v1.0.0</span>
+        </h1>
+        <p class="hero-subtitle">
+          Processore di <strong>allineamento di fase e tempo chirurgico</strong> concepito sui principi di <em>Auto-Align</em> e <em>VocALign</em>, con un'interfaccia hardware fotorealistica ad alto contrasto. Risolve istantaneamente le cancellazioni di fase e il comb-filtering tra microfoni multipli di batterie acustiche, bassi DI/mic, cori e voci doppie.
+        </p>
 
-      <div class="hero-actions">
-        <a href="INSTALLA_PLF_Eyeliner.exe" class="btn btn-primary btn-lg" download style="background: linear-gradient(135deg, #27e870, #10b981); color: #000; border: none; font-weight:800;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Installa PLF Eyeliner (.EXE) <span class="btn-subtext">(1 Clic per Windows x64)</span>
-        </a>
-        <a href="PLF_Eyeliner_v1.0.0_VST3_Win64.zip" class="btn btn-secondary btn-lg" download>
-          Scarica ZIP (.ZIP)
-        </a>
-        <a href="index.html#catalog" class="btn btn-secondary btn-lg">
-          ← Torna al Catalogo Completo
-        </a>
-      </div>
+        <div class="hero-cta">
+          <a href="INSTALLA_PLF_Eyeliner.exe" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #10b981, #34d399); color: #04101d;">
+            <span>Scarica PLF Eyeliner (.EXE)</span>
+            <span class="btn-subtext">Installer 1-Click per Windows &bull; Pronto per Ableton</span>
+          </a>
+          <a href="PLF_Eyeliner_vst3_PLF_Antigravity.zip" class="btn btn-secondary btn-lg">
+            <span>Scarica Archivio ZIP (.ZIP)</span>
+            <span class="btn-subtext">Bundle VST3 portabile &bull; Manuale incluso</span>
+          </a>
+          <a href="index.html#catalog" class="btn btn-secondary btn-lg">
+            <span>← Torna al Catalogo</span>
+          </a>
+        </div>
 
-      <div class="hero-guarantees">
-        <span>✓ 100% Gratuito</span>
-        <span>✓ Architettura Master / Companion In-Process</span>
-        <span>✓ Durata Analisi Configurabile (5s - 120s)</span>
-        <span>✓ Auto Gain Staging (-18 dBFS)</span>
-        <span>✓ Audition BEFORE / AFTER</span>
+        <div class="hero-specs-pill">
+          <div class="spec-pill-item">
+            <span class="spec-icon">🎯</span>
+            <span>Master / Companion In-Process</span>
+          </div>
+          <div class="spec-pill-item">
+            <span class="spec-icon">⏱️</span>
+            <span>Sub-Sample Hermite (0.1 Sample)</span>
+          </div>
+          <div class="spec-pill-item">
+            <span class="spec-icon">🎚️</span>
+            <span>Dynamic Master EQ a 6 Bande</span>
+          </div>
+          <div class="spec-pill-item">
+            <span class="spec-icon">⚡</span>
+            <span>Zero Latenza Reale (0 campioni)</span>
+          </div>
+        </div>
       </div>
 
       <!-- Real Plugin Interface Preview -->
-      <div class="plugin-preview-card" style="border-color: rgba(39, 232, 112, 0.4);">
-        <div class="preview-header">
-          <div class="preview-dots">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
+      <div style="margin-top: 40px; text-align: center;">
+        <div style="background: #0b0f17; border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 20px; box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 0 25px rgba(16, 185, 129, 0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 0.85rem; font-family: var(--font-mono); color: #94a3b8;">
+            <div><span style="color:#ef4444;">●</span> <span style="color:#eab308;">●</span> <span style="color:#22c55e;">●</span> &nbsp; PLF EYELINER // PRECISION AUDIO INTERFACE</div>
+            <div style="color: #34d399; font-weight: 700;">PHASE ENGINE LOCKED &bull; 64-BIT DSP</div>
           </div>
-          <div class="preview-title">PLF EYELINER // PRECISION AUDIO INTERFACE</div>
-          <div class="preview-status" style="color: #27e870;">PHASE ENGINE LOCKED</div>
-        </div>
-        <div class="preview-real-wrapper" style="background:#0a0a0c; text-align:center; padding:15px;">
-          <img src="plf_eyeliner_gui.png?v=7" alt="PLF Eyeliner VST3 GUI" class="plugin-real-screenshot" style="max-width:100%; border-radius:6px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+          <img src="plf_eyeliner_gui.png" alt="PLF Eyeliner GUI" style="max-width: 100%; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.8);">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="section" style="background: rgba(255,255,255,0.02); padding: 80px 0;">
+  <!-- Technical Features Section -->
+  <section class="specs-section">
     <div class="container">
-      <h2 style="font-size: 2.2rem; margin-bottom: 40px; text-align:center;">Caratteristiche di Livello Mastering</h2>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+      <div class="section-header" style="text-align:center; max-width:800px; margin:0 auto 36px auto;">
+        <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:12px;">
+          Caratteristiche di Livello <span class="gradient-text" style="background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Mastering &amp; Mix</span>
+        </h2>
+        <p style="color:var(--text-muted); font-size:1.05rem;">
+          Ingegneria di precisione per eliminare le cancellazioni acustiche e restituire corpo, transienti e impatto solido al tuo mix.
+        </p>
+      </div>
+
+      <div class="modules-grid">
         <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">MASTER / COMPANION</span>
-            <h3 class="module-title">Comunicazione In-Process</h3>
-          </div>
-          <p class="module-desc">Le tracce Companion comunicano in tempo reale con l'istanza Master all'interno della memoria di processo di Ableton Live a zero latenza e zero carico di rete.</p>
+          <div class="module-icon" style="color: #34d399;">🔗</div>
+          <h3>Architettura Master / Companion</h3>
+          <p>
+            Le tracce secondarie (Companion) comunicano in tempo reale con l'istanza Master all'interno della memoria di processo di Ableton Live a zero overhead e senza bisogno di routing esterni complessi.
+          </p>
         </div>
 
         <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">DSP CHIRURGICO</span>
-            <h3 class="module-title">Sub-Sample Hermite</h3>
-          </div>
-          <p class="module-desc">Interpolazione frazionaria al decimo di campione per micro-spostamenti temporali trasparenti e privi di artefatti o alterazioni di timbro.</p>
+          <div class="module-icon" style="color: #34d399;">⏱️</div>
+          <h3>Interpolazione Sub-Sample Hermite</h3>
+          <p>
+            Algoritmo frazionario di precisione decimale: allinea i segnali al decimo di campione per micro-spostamenti temporali trasparenti, senza mai sfocare i transienti o alterare il timbro.
+          </p>
         </div>
 
         <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">DURATA ANALISI</span>
-            <h3 class="module-title">Slider 5s - 120s</h3>
-          </div>
-          <p class="module-desc">Scegli la durata di accumulo durante il playback in Ableton: più a lungo ascolta, più precisa e stabile sarà la matrice di allineamento calcolata.</p>
+          <div class="module-icon" style="color: #34d399;">⏳</div>
+          <h3>Durata Analisi Configurabile (5s - 120s)</h3>
+          <p>
+            Scegli la finestra temporale di analisi statistica durante la riproduzione del brano: più a lungo ascolta il segnale, più stabile e chirurgica sarà la matrice di allineamento calcolata.
+          </p>
         </div>
 
         <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">AUTO GAIN STAGE</span>
-            <h3 class="module-title">Intelligent Headroom (A/B/C)</h3>
-          </div>
-          <p class="module-desc">Riconoscimento spettrale dei ruoli (Drums, Bass, Lead, Chords, Perc) e 3 profili di mix dedicati: <strong>A (Punch)</strong> per un mix moderno d'impatto, <strong>B (Balanced)</strong> per linearit&agrave; trasparente da console, <strong>C (Glue)</strong> per calore e coesione analogica.</p>
+          <div class="module-icon" style="color: #34d399;">📊</div>
+          <h3>Auto Gain Stage Intelligente</h3>
+          <p>
+            Riconoscimento dei livelli con target a -18 dBFS di headroom ottimale e 3 profili di risposta: <strong>A (Punch)</strong> per beat e batterie, <strong>B (Balanced)</strong> per linearità trasparente, <strong>C (Glue)</strong> per calore analogico.
+          </p>
         </div>
 
         <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">ALIGN MATRIX</span>
-            <h3 class="module-title">3 Algoritmi di Fase (A/B/C)</h3>
-          </div>
-          <p class="module-desc">Allineamento transienti a consenso statistico con 3 profili timbrici: <strong>A (Transient)</strong> attacco nitido e punch sui colpi, <strong>B (Spectral)</strong> massima somma di corpo e basse frequenze, <strong>C (Acoustic)</strong> preservazione della profondit&agrave; ambientale naturale.</p>
+          <div class="module-icon" style="color: #34d399;">🎯</div>
+          <h3>3 Algoritmi di Fase Dedicati</h3>
+          <p>
+            Tre strategie di correlazione: <strong>A (Transient)</strong> attacco nitido e colpo secco, <strong>B (Spectral)</strong> massima somma di corpo e basse frequenze (sub/kick), <strong>C (Acoustic)</strong> preservazione dell'ambiente naturale.
+          </p>
         </div>
 
         <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">DYNAMIC MASTER EQ</span>
-            <h3 class="module-title">FabFilter EQ &amp; RX Waterfall</h3>
-          </div>
-          <p class="module-desc">Equalizzatore dinamico a 6 bande con nodi parametrici interattivi, compressione/espansione dinamica per banda, doppio display (Analyzer FFT 60 FPS o RX Sonogram Waterfall), e 3 profili Auto-EQ intelligenti: <strong>A (Modern Air)</strong>, <strong>B (Balanced Console)</strong>, <strong>C (Dynamic De-Harsh)</strong>.</p>
-        </div>
-
-        <div class="module-card">
-          <div class="module-header">
-            <span class="module-badge" style="color:#27e870; border-color:rgba(39,232,112,0.4);">CHASSIS ACCIAIO</span>
-            <h3 class="module-title">Chassis Bianco Opaco</h3>
-          </div>
-          <p class="module-desc">Alluminio spazzolato ad alto contrasto, manopole con display retroilluminati verdi, LED fosforescenti con spazio dedicato e finestra completamente ridimensionabile.</p>
+          <div class="module-icon" style="color: #34d399;">🎛️</div>
+          <h3>Dynamic Master EQ &amp; Waterfall</h3>
+          <p>
+            Equalizzatore dinamico a 6 bande con nodi interattivi, display con doppio analizzatore FFT a 60 FPS o sonogramma a cascata Waterfall (stile RX), e 3 curve correttive automatiche.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-brand">
-        <span class="logo-accent">PLF</span> ANTIGRAVITY AUDIO DSP
-        <p class="footer-copy">© 2026 PLF Audio & Antigravity. Strumenti audio di precisione per Windows x64.</p>
+  <!-- Ableton Live Setup Guide -->
+  <section class="container" style="padding: 60px 24px;">
+    <div class="section-header" style="text-align:center; max-width:800px; margin:0 auto 36px auto;">
+      <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:12px;">
+        Come Usare PLF Eyeliner in <span class="gradient-text">Ableton Live</span>
+      </h2>
+      <p style="color:var(--text-muted); font-size:1.05rem;">
+        Pochi secondi per allineare una batteria multitraccia o tracce doppie di voce e chitarra.
+      </p>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">1</div>
+        <h3>Inserisci l'Istanza Master</h3>
+        <p>
+          Trascina <strong>PLF Eyeliner</strong> sulla traccia di riferimento principale (ad es. <em>Overhead L</em> della batteria o la <em>Lead Vocal</em>). Imposta la modalità su <strong>MASTER</strong>.
+        </p>
       </div>
-      <div class="footer-links">
-        <a href="index.html">Catalogo Ufficiale</a>
-        <a href="space-designer.html">Space Designer</a>
-        <a href="little-cosm.html">Little Cosm</a>
-        <a href="sequentia.html">Sequentia</a>
-        <a href="channel.html">Channel</a>
-        <a href="eyeliner.html">PLF Eyeliner</a>
+
+      <div class="module-card">
+        <div class="module-icon">2</div>
+        <h3>Inserisci i Companion</h3>
+        <p>
+          Trascina <strong>PLF Eyeliner</strong> sulle altre tracce (ad es. <em>Snare Top, Kick In, Tom, Room, Backing Vocals</em>). Imposta la modalità su <strong>COMPANION</strong> e collega al canale Master.
+        </p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">3</div>
+        <h3>Avvia il Playback &amp; Allinea</h3>
+        <p>
+          Fai partire Ableton Live per qualche battuta. Premi <strong>ANALYZE &amp; ALIGN</strong>: i ritardi sub-sample e le polarità vengono calcolati e applicati istantaneamente a zero latenza!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Plugin Navigation Section -->
+  <section class="container" style="padding: 40px 24px 70px 24px;">
+    <div class="section-header" style="text-align:center; margin-bottom: 30px;">
+      <h2 style="font-size:1.8rem; font-weight:800;">Esplora gli Altri Plugin della Suite</h2>
+      <p style="color:var(--text-muted);">Scopri l'intera collezione audio firmata PLF Antigravity per Ableton Live</p>
+    </div>
+
+    <div class="modules-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="module-card" style="text-align: center;">
+        <h3 style="margin-bottom: 8px;">PLF Space Designer</h3>
+        <p style="font-size:0.85rem; margin-bottom: 16px;">Reverb algoritmico a 21 motori, 33 preset e visualizzatore a 60 FPS.</p>
+        <a href="space-designer.html" class="btn btn-secondary btn-sm" style="display:inline-block;">Scheda Space Designer</a>
+      </div>
+
+      <div class="module-card" style="text-align: center;">
+        <h3 style="margin-bottom: 8px;">PLF Little Cosm</h3>
+        <p style="font-size:0.85rem; margin-bottom: 16px;">Colorazione vintage, saturatore a valvole e 4 stadi sonori in mogano.</p>
+        <a href="little-cosm.html" class="btn btn-secondary btn-sm" style="display:inline-block;">Scheda Little Cosm</a>
+      </div>
+
+      <div class="module-card" style="text-align: center;">
+        <h3 style="margin-bottom: 8px;">PLF Sequentia</h3>
+        <p style="font-size:0.85rem; margin-bottom: 16px;">Sequencer generativo a 16 step, ritmi euclidei e MIDI drag & drop.</p>
+        <a href="sequentia.html" class="btn btn-secondary btn-sm" style="display:inline-block;">Scheda Sequentia</a>
+      </div>
+
+      <div class="module-card" style="text-align: center;">
+        <h3 style="margin-bottom: 8px;">PLF Channel</h3>
+        <p style="font-size:0.85rem; margin-bottom: 16px;">Striscia di canale classica, EQ a 4 bande e bus compressor VCA.</p>
+        <a href="channel.html" class="btn btn-secondary btn-sm" style="display:inline-block;">Scheda Channel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <footer class="footer-cta">
+    <div class="container">
+      <h2>Scarica PLF Eyeliner Ora</h2>
+      <p>Installer automatico per Windows x64. Compatibile con Ableton Live 10, 11 e 12.</p>
+      <div class="cta-buttons">
+        <a href="INSTALLA_PLF_Eyeliner.exe" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #10b981, #34d399); color: #04101d;">
+          <span>Scarica PLF Eyeliner (.EXE)</span>
+        </a>
+        <a href="index.html" class="btn btn-secondary btn-lg">
+          <span>← Torna al Catalogo Principale</span>
+        </a>
       </div>
     </div>
   </footer>
 
+  <!-- Base Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <strong>PLF ANTIGRAVITY AUDIO DSP</strong> &bull; &copy; 2026 Tutti i diritti riservati.
+        <div style="font-size:0.8rem; color:#64748b; margin-top:4px;">
+          Plugin VST3 nativi per Windows x64. Compatibili con Ableton Live 10, 11, 12 e qualsiasi DAW VST3 64-bit.
+        </div>
+      </div>
+      <div class="footer-links" style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a href="index.html" style="color:var(--primary); text-decoration:none; font-weight:700;">Catalogo</a>
+        <a href="space-designer.html" style="color:var(--text-muted); text-decoration:none;">Space Designer</a>
+        <a href="little-cosm.html" style="color:var(--text-muted); text-decoration:none;">Little Cosm</a>
+        <a href="sequentia.html" style="color:var(--text-muted); text-decoration:none;">Sequentia</a>
+        <a href="channel.html" style="color:var(--text-muted); text-decoration:none;">Channel</a>
+        <a href="eyeliner.html" style="color:#34d399; text-decoration:none; font-weight:700;">Eyeliner</a>
+        <a href="PLF_Antigravity_VST3_Installer.exe" style="color:var(--primary); text-decoration:none; font-weight:700;">Download Suite .EXE</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
