@@ -1,5 +1,5 @@
-// =========================================================================
-// PLF ANTIGRAVITY — PLF SPACE DESIGNER & PLF CHANNEL WEB SHOWCASE JAVASCRIPT
+﻿// =========================================================================
+// PLF AUDIO LAB — PLF SPACE DESIGNER & PLF CHANNEL WEB SHOWCASE JAVASCRIPT
 // =========================================================================
 
 // --- 1. PRESET LIBRARY DATA (PLF SPACE DESIGNER) ---
