@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLF Unmask v1.0.0 — Dynamic Sidechain Spectral Unmasker & Transient Guard (VST3)</title>
+  <meta name="description" content="PLF Unmask: Plugin VST3 per la risoluzione dinamica dei conflitti frequenziali in Ableton Live. Dynamic spectral carving chirurgico a zero latenza con Transient Safe e diagnostica bilingue.">
+  <meta name="keywords" content="PLF Unmask, spectral unmasking vst3, sidechain dynamic eq ableton, carver frequenze, transient safe, FabFilter Pro-MB alternative, PLF Antigravity">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar" style="background: linear-gradient(90deg, #0891b2, #06b6d4, #10b981); color: #04101d; font-weight: 700;">
+    ⚡ <strong>NUOVO: PLF Unmask v1.0.0</strong> &mdash; Dynamic Sidechain Spectral Carving &amp; Transient Safe per Ableton Live &amp; Windows x64
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">PLF</span>
+        <span class="logo-text">ANTIGRAVITY <span class="logo-sub">AUDIO DSP</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link" style="color: var(--primary); font-weight: 700;">← Tutti i Plugin</a>
+        <a href="space-designer.html" class="nav-link">Space Designer</a>
+        <a href="little-cosm.html" class="nav-link">Little Cosm</a>
+        <a href="sequentia.html" class="nav-link">Sequentia</a>
+        <a href="channel.html" class="nav-link">Channel</a>
+        <a href="eyeliner.html" class="nav-link">Eyeliner</a>
+        <a href="unmask.html" class="nav-link active" style="color: #06b6d4; font-weight: 700;">PLF Unmask</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="INSTALLA_PLF_Unmask.exe" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #06b6d4, #10b981); color: #04101d;">
+          <span>Scarica .EXE (Unmask)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; border-color: rgba(6, 182, 212, 0.35);">
+          EFFETTO AUDIO VST3 64-BIT &bull; ABLETON LIVE &amp; WINDOWS X64
+        </div>
+        <h1 class="hero-title">
+          Spazio e Chiarezza Chirurgica nel Mix:<br>
+          <span class="gradient-text" style="background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 50%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PLF Unmask v1.0.0</span>
+        </h1>
+        <p class="hero-subtitle">
+          Plugin di <strong>sidechain spectral unmasking</strong> progettato per risolvere dinamicamente e chirurgicamente i conflitti di frequenza tra la traccia protagonista (es. Voce Lead, Kick, Snare) e la traccia di sfondo (es. Pad, Chitarre, Synth), a <strong>zero latenza</strong> e preservando totalmente l'attacco dei transienti grazie al modulo <strong>Transient Safe</strong>.
+        </p>
+
+        <div class="hero-cta">
+          <a href="INSTALLA_PLF_Unmask.exe" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #06b6d4, #10b981); color: #04101d;">
+            <span>Scarica PLF Unmask (.EXE)</span>
+            <span class="btn-subtext">Installer 1-Click per Windows &bull; Pronto per Ableton</span>
+          </a>
+          <a href="PLF_Unmask_vst3_PLF_Antigravity.zip" class="btn btn-secondary btn-lg">
+            <span>Scarica Archivio ZIP (.ZIP)</span>
+            <span class="btn-subtext">Bundle VST3 portabile</span>
+          </a>
+          <a href="index.html#catalog" class="btn btn-secondary btn-lg">
+            <span>← Torna al Catalogo</span>
+          </a>
+        </div>
+
+        <div class="hero-specs-pill">
+          <div class="spec-pill-item">
+            <span class="spec-icon">⚡</span>
+            <span>Zero Latenza Reale (0 campioni)</span>
+          </div>
+          <div class="spec-pill-item">
+            <span class="spec-icon">🛡️</span>
+            <span>Transient Safe (Attacchi Protetti)</span>
+          </div>
+          <div class="spec-pill-item">
+            <span class="spec-icon">📊</span>
+            <span>Diagnostica Bilingue (ITA / ENG)</span>
+          </div>
+          <div class="spec-pill-item">
+            <span class="spec-icon">↔️</span>
+            <span>Completamente Ridimensionabile</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Plugin Interface Preview -->
+      <div style="margin-top: 40px; text-align: center;">
+        <div style="background: #0b0f17; border: 1px solid rgba(6, 182, 212, 0.4); border-radius: 14px; padding: 20px; box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 0 25px rgba(6, 182, 212, 0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 0.85rem; font-family: var(--font-mono); color: #94a3b8;">
+            <div><span style="color:#ef4444;">●</span> <span style="color:#eab308;">●</span> <span style="color:#22c55e;">●</span> &nbsp; PLF UNMASK // DYNAMIC SPECTRAL CARVER</div>
+            <div style="color: #22d3ee; font-weight: 700;">SIDECHAIN ENGINE BUS 3/4 &bull; ZERO LATENCY</div>
+          </div>
+          <img src="plf_unmask_gui.png" alt="PLF Unmask GUI" style="max-width: 100%; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.8);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Features Section -->
+  <section class="specs-section">
+    <div class="container">
+      <div class="section-header" style="text-align:center; max-width:800px; margin:0 auto 36px auto;">
+        <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:12px;">
+          Caratteristiche di Livello <span class="gradient-text" style="background: linear-gradient(135deg, #06b6d4, #10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Mastering &amp; Post-Produzione</span>
+        </h2>
+        <p style="color:var(--text-muted); font-size:1.05rem;">
+          Ingegneria di precisione acustica per eliminare le sovrapposizioni frequenziali senza comprimere l'intera traccia e senza svuotare il mix.
+        </p>
+      </div>
+
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-icon" style="color: #06b6d4;">🎛️</div>
+          <h3>Dynamic Spectral Carving a 4 Zone</h3>
+          <p>
+            4 filtri biquad IIR parametrici dinamici che operano su zone critiche: Low-Mid mud (~280 Hz), corpo armonico (~720 Hz), formante e intelligibilità vocale (~2.2 kHz) e presenza (~4.8 kHz).
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon" style="color: #10b981;">🛡️</div>
+          <h3>Transient Safe Engine</h3>
+          <p>
+            Riconosce la salita dinamica ultrarapida dei transienti sulla traccia di sfondo (es. percussioni, plettrate di chitarra o tasti di piano) e inibisce il ducking durante l'attacco, lasciando il punch intatto.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon" style="color: #06b6d4;">📊</div>
+          <h3>Feed Diagnostico Bilingue (ITA / ENG)</h3>
+          <p>
+            Un pannello diagnostico che calcola in tempo reale i dB di headroom guadagnati, le frequenze chirurgicamente liberate e la percentuale stimata di chiarezza vocale recuperata.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon" style="color: #10b981;">⚡</div>
+          <h3>Zero Latenza Nativa (0 Campioni)</h3>
+          <p>
+            Sviluppato in C++ con JUCE e biquad Direct Form II Transposed: elaborazione in-place senza latenza di buffer o sfasamenti, ideale anche per il tracking dal vivo e mix complessi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ableton Live Setup Guide -->
+  <section class="container" style="padding: 40px 0 60px 0;">
+    <div style="background: #11151c; border: 1px solid #232a36; border-radius: 14px; padding: 32px;">
+      <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-bottom: 16px;">
+        Guida al Routing Sidechain in Ableton Live
+      </h3>
+      <ol style="color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin-left: 20px;">
+        <li>Inserisci <strong>PLF Unmask</strong> sulla traccia di sfondo che desideri intagliare (es. traccia Pad, Chitarre o Sfondo).</li>
+        <li>Apri l'header del plugin nel rack dispositivi di Ableton Live e attiva la voce <strong>Sidechain</strong>.</li>
+        <li>Seleziona come sorgente audio la traccia protagonista (es. <strong>Voce Lead</strong> o <strong>Kick</strong>).</li>
+        <li>Nel display del plugin la dicitura passerà a <span style="color:#10b981; font-weight:bold;">CH 3/4 [CONNECTED]</span>, attivando il carving dinamico solo quando la voce è presente.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <span class="logo-text" style="font-weight: 800;">PLF ANTIGRAVITY AUDIO DSP</span>
+        <p style="color: #64748b; font-size: 0.85rem; margin-top: 6px;">
+          Suite di plugin audio VST3 di precisione per Ableton Live su Windows x64.
+        </p>
+      </div>
+      <div>
+        <a href="index.html" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem;">Catalogo Completo (6 Plugin)</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
